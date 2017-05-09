@@ -24,6 +24,7 @@ require 'code/world/Map'
 gTextures = {
     ['tiles'] = love.graphics.newImage('graphics/tiles.png'),
 }
+gTextures['tiles']:setFilter('nearest', 'nearest')
 
 gFrames = {
     ['creatures'] = GenerateQuads(gTextures['tiles'], 32, 32)

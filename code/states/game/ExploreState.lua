@@ -21,7 +21,9 @@ function ExploreState:init()
         frame = 129,
     }
 
-    self.floor = self:createFloorVertices()
+    self.floor = self:createFloorVertices(1179)
+    self.leftWallNear = self:createLeftWallNearVertices()
+    self.rightWallNear = self:createRightWallNearVertices()
 end
 
 function ExploreState:getUVsByFrame(texture, frame, tileHeight, tileWidth)
@@ -61,33 +63,64 @@ function ExploreState:getUVsByFrame(texture, frame, tileHeight, tileWidth)
 end
 
 function ExploreState:createFloorVertices()
-    local topLeft, topRight, bottomRight, bottomLeft =
-        self:getUVsByFrame(gTextures['tiles'], 1179, 32, 32)
-
     return {
         {
             -- top-left corner
-            0 + 192, 0 + 160,
-            topLeft[1], topLeft[2],
-            255, 255, 255
+            192, 160
         },
         {
             -- top-right corner
-            128 + 192, 0 + 160,
-            topRight[1], topRight[2],
-            255, 255, 255
+            320, 160,
         },
         {
             -- bottom-right corner
-            256 + 192, 128 + 160,
-            bottomRight[1], bottomRight[2],
-            255, 255, 255
+            448, 288,
         },
         {
             -- bottom-left corner
-            -128 + 192, 128 + 160,
-            bottomLeft[1], bottomLeft[2],
-            255, 255, 255
+            64, 288,
+        }
+    }
+end
+
+function ExploreState:createLeftWallNearVertices()
+    return {
+        {
+            -- top-left corner
+            0, 64,
+        },
+        {
+            -- top-right corner
+            192, 64,
+        },
+        {
+            -- bottom-right corner
+            192, 160,
+        },
+        {
+            -- bottom-left corner
+            0, 360,
+        }
+    }
+end
+
+function ExploreState:createRightWallNearVertices()
+    return {
+        {
+            -- top-right corner
+            virtualWidth, 64,
+        },
+        {
+            -- top-left corner
+            virtualWidth - 192, 64,
+        },
+        {
+            -- bottom-left corner
+            virtualWidth - 192, 160,
+        },
+        {
+            -- bottom-left corner
+            virtualWidth, 360,
         }
     }
 end
@@ -104,6 +137,18 @@ end
 function ExploreState:renderMap()
     -- render the ground and the ceiling
     love.graphics.clear()
+
+    -- draw floor
     persp.setRepeat({26/62 + 0.0025,18/48 - 0.00015}, {1/62, 1/48})
     persp.quad(gTextures['tiles'], self.floor[1], self.floor[2], self.floor[3], self.floor[4])
+
+    -- draw left wall
+    persp.setRepeat({25/62 + 0.0025,16/48 - 0.00015}, {1/62, 1/48})
+    persp.quad(gTextures['tiles'], self.leftWallNear[1], self.leftWallNear[2],
+        self.leftWallNear[3], self.leftWallNear[4])
+
+    -- draw right wall
+    persp.setRepeat({25/62 + 0.0025,16/48 - 0.00015}, {1/62, 1/48})
+    persp.quad(gTextures['tiles'], self.rightWallNear[1], self.rightWallNear[2],
+        self.rightWallNear[3], self.rightWallNear[4])
 end
