@@ -9,6 +9,8 @@ Grid = require 'code/libs/jumper.grid'
 Pathfinder = require 'code/libs/jumper.pathfinder'
 Timer = require 'code/libs/knife.timer'
 
+persp = require 'code/Perspective'
+
 require 'code/StateMachine'
 require 'code/Util'
 
