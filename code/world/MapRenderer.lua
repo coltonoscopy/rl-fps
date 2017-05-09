@@ -43,6 +43,18 @@ function MapRenderer:init(map)
             {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
             {virtualWidth + virtualWidth / 7, virtualHeight + virtualHeight / 4}
         },
+        ['wallLeftB'] = {
+            {virtualWidth / 7, virtualHeight / 12},
+            {virtualWidth / 3.4, virtualHeight / 8 * 2.5},
+            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
+            {virtualWidth / 7, virtualHeight - virtualHeight / 8}
+        },
+        ['wallRightB'] = {
+            {virtualWidth - virtualWidth / 7, virtualHeight / 12},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight / 8 * 2.5},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
+            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8}
+        },
     }
 end
 
@@ -110,6 +122,8 @@ function MapRenderer:render()
     persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62, 1/48})
     self:drawQuad('wallLeftA')
     self:drawQuad('wallRightA')
+    self:drawQuad('wallLeftB')
+    self:drawQuad('wallRightB')
 
     -- -- draw left wall
     -- persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62, 1/48})
