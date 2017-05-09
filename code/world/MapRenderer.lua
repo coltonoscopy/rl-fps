@@ -20,16 +20,28 @@ function MapRenderer:init(map)
             {-virtualWidth / 5, virtualHeight + virtualHeight / 3}
         },
         ['floorB'] = {
-            {virtualWidth / 3.5, virtualHeight - virtualHeight / 3},
-            {virtualWidth - virtualWidth / 3.5, virtualHeight - virtualHeight / 3},
+            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
             {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
             {virtualWidth / 7, virtualHeight - virtualHeight / 8},
         },
         ['floorC'] = {
-            {virtualWidth / 2.5, virtualHeight / 2},
-            {virtualWidth - virtualWidth / 2.5, virtualHeight / 2},
-            {virtualWidth - virtualWidth / 3.5, virtualHeight - virtualHeight / 3},
-            {virtualWidth / 3.5, virtualHeight - virtualHeight / 3},
+            {virtualWidth / 2.45, virtualHeight / 2},
+            {virtualWidth - virtualWidth / 2.45, virtualHeight / 2},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
+            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
+        },
+        ['wallLeftA'] = {
+            {-virtualWidth / 12, -virtualHeight / 4},
+            {virtualWidth / 7, virtualHeight / 12},
+            {virtualWidth / 7, virtualHeight - virtualHeight / 8},
+            {-virtualWidth / 7, virtualHeight + virtualHeight / 4}
+        },
+        ['wallRightA'] = {
+            {virtualWidth + virtualWidth / 12, -virtualHeight / 4},
+            {virtualWidth - virtualWidth / 7, virtualHeight / 12},
+            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
+            {virtualWidth + virtualWidth / 7, virtualHeight + virtualHeight / 4}
         },
     }
 end
@@ -88,11 +100,16 @@ function MapRenderer:getUVsByFrame(texture, frame, tileHeight, tileWidth)
 end
 
 function MapRenderer:render()
-    -- draw floor A
+    -- draw floors
     persp.setRepeat({26/62 + X_UV_OFF, 18/48 - Y_UV_OFF}, {1/62, 1/48})
     self:drawQuad('floorA')
     self:drawQuad('floorB')
     self:drawQuad('floorC')
+
+    -- draw walls
+    persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62, 1/48})
+    self:drawQuad('wallLeftA')
+    self:drawQuad('wallRightA')
 
     -- -- draw left wall
     -- persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62, 1/48})
