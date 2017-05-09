@@ -28,5 +28,6 @@ function Entity:update(dt)
 end
 
 function Entity:render()
-    love.graphics.draw(self.texture, self.frame, 166, 84, 0, 5, 5)
+    love.graphics.draw(self.texture, self.frame, virtualWidth / 2 - 18 * 2.75,
+        84, 0, 2.5, 2.75)
 end

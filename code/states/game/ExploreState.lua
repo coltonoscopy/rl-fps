@@ -21,45 +21,7 @@ function ExploreState:init()
         frame = 129,
     }
 
-    self.floor = self:createFloorVertices(1179)
-    self.leftWallNear = self:createLeftWallNearVertices()
-    self.rightWallNear = self:createRightWallNearVertices()
-end
-
-function ExploreState:getUVsByFrame(texture, frame, tileHeight, tileWidth)
-    local textureWidth = texture:getWidth()
-    local textureHeight = texture:getHeight()
-    local tilesPerRow = textureWidth / 32
-    local tilesPerColumn = textureHeight / 32
-    local numTiles = tilesPerRow * tilesPerColumn
-
-    local x = frame % tilesPerRow + 1
-    local y = math.floor(frame / tilesPerRow)
-
-    local xIncrement = 1 / tilesPerRow
-    local yIncrement = 1 / tilesPerColumn
-
-    local topLeft = {
-        xIncrement * x, yIncrement * y
-    }
-    print_r(topLeft)
-
-    local topRight = {
-        xIncrement * x + xIncrement, yIncrement * y
-    }
-    print_r(topRight)
-
-    local bottomRight = {
-        xIncrement * x + xIncrement, yIncrement * y + yIncrement
-    }
-    print_r(bottomRight)
-
-    local bottomLeft = {
-        xIncrement * x, yIncrement * y + yIncrement
-    }
-    print_r(bottomLeft)
-
-    return topLeft, topRight, bottomRight, bottomLeft;
+    self.mapRenderer = MapRenderer(self.map)
 end
 
 function ExploreState:createFloorVertices()
@@ -138,17 +100,5 @@ function ExploreState:renderMap()
     -- render the ground and the ceiling
     love.graphics.clear()
 
-    -- draw floor
-    persp.setRepeat({26/62 + 0.0025,18/48 - 0.00015}, {1/62, 1/48})
-    persp.quad(gTextures['tiles'], self.floor[1], self.floor[2], self.floor[3], self.floor[4])
-
-    -- draw left wall
-    persp.setRepeat({25/62 + 0.0025,16/48 - 0.00015}, {1/62, 1/48})
-    persp.quad(gTextures['tiles'], self.leftWallNear[1], self.leftWallNear[2],
-        self.leftWallNear[3], self.leftWallNear[4])
-
-    -- draw right wall
-    persp.setRepeat({25/62 + 0.0025,16/48 - 0.00015}, {1/62, 1/48})
-    persp.quad(gTextures['tiles'], self.rightWallNear[1], self.rightWallNear[2],
-        self.rightWallNear[3], self.rightWallNear[4])
+    self.mapRenderer:render()
 end

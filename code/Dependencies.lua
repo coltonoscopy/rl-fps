@@ -20,6 +20,7 @@ require 'code/states/BaseState'
 require 'code/states/game/ExploreState'
 
 require 'code/world/Map'
+require 'code/world/MapRenderer'
 
 gTextures = {
     ['tiles'] = love.graphics.newImage('graphics/tiles.png'),

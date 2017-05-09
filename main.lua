@@ -5,8 +5,8 @@ love.mouse.buttonsReleased = {}
 
 require 'code/Dependencies'
 
-virtualWidth = 512
-virtualHeight = 288
+virtualWidth = 384
+virtualHeight = 216
 
 -- state machine controlling our various game states
 gGameSM = StateMachine {
@@ -21,7 +21,7 @@ function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
     love.window.setTitle('Roguelike RPG')
 
-    push:setupScreen(virtualWidth, virtualHeight, 1280, 720, {
+    push:setupScreen(virtualWidth, virtualHeight, 1920, 1080, {
         fullscreen = false,
         resizable = true
     })
@@ -96,6 +96,7 @@ function love.draw()
     push:apply('start')
 
     gGameSM:render()
+    love.graphics.print("FPS: " .. tostring(love.timer.getFPS()))
 
     push:apply('end')
 end
