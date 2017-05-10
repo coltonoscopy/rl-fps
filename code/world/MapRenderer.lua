@@ -6,7 +6,7 @@
 MapRenderer = Class{}
 
 X_UV_OFF = 0.003
-Y_UV_OFF = 0.0001
+Y_UV_OFF = 0.000001
 
 function MapRenderer:init(map)
     self.map = map
@@ -191,7 +191,7 @@ end
 
 function MapRenderer:render()
     -- draw floors
-    persp.setRepeat({26/62 + X_UV_OFF, 18/48}, {1/62 - 1/(62*32), 1/48})
+    persp.setRepeat({26/62 + X_UV_OFF, 17/48}, {1/62 - 1/(62*32), 1/48})
     self:drawQuad('floorA')
     self:drawQuad('floorA-L')
     self:drawQuad('floorA-R')
@@ -200,7 +200,7 @@ function MapRenderer:render()
     self:drawQuad('floorD')
 
     -- draw walls
-    persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
+    persp.setRepeat({25/62 + X_UV_OFF, 15/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
     -- self:drawQuad('wallLeftA')
     -- self:drawQuad('wallRightA')
     self:drawQuad('wallLeftB')
