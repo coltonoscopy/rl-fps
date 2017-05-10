@@ -5,8 +5,8 @@
 
 MapRenderer = Class{}
 
-X_UV_OFF = 0.0025
-Y_UV_OFF = 0.00015
+X_UV_OFF = 0.003
+Y_UV_OFF = 0.0001
 
 function MapRenderer:init(map)
     self.map = map
@@ -18,6 +18,18 @@ function MapRenderer:init(map)
             {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
             {virtualWidth + virtualWidth / 5, virtualHeight + virtualHeight / 3},
             {-virtualWidth / 5, virtualHeight + virtualHeight / 3}
+        },
+        ['floorA-L'] = {
+            {-virtualWidth / 3, virtualHeight - virtualHeight / 8},
+            {virtualWidth / 7, virtualHeight - virtualHeight / 8},
+            {-virtualWidth / 23, virtualHeight + virtualHeight / 8},
+            {-virtualWidth / 3, virtualHeight + virtualHeight / 8}
+        },
+        ['floorA-R'] = {
+            {virtualWidth + virtualWidth / 3, virtualHeight - virtualHeight / 8},
+            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
+            {virtualWidth + virtualWidth / 23, virtualHeight + virtualHeight / 8},
+            {virtualWidth + virtualWidth / 3, virtualHeight + virtualHeight / 8}
         },
         ['floorB'] = {
             {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
@@ -90,6 +102,18 @@ function MapRenderer:init(map)
             {virtualWidth - virtualWidth / 7, virtualHeight / 13},
             {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
             {virtualWidth / 7, virtualHeight - virtualHeight / 8}
+        },
+        ['faceA-L'] = {
+            {-virtualWidth / 2, virtualHeight / 13},
+            {virtualWidth / 7, virtualHeight / 13},
+            {virtualWidth / 7, virtualHeight - virtualHeight / 8},
+            {-virtualWidth / 2, virtualHeight - virtualHeight / 8}
+        },
+        ['faceA-R'] = {
+            {virtualWidth + virtualWidth / 2, virtualHeight / 13},
+            {virtualWidth - virtualWidth / 7, virtualHeight / 13},
+            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
+            {virtualWidth + virtualWidth / 2, virtualHeight - virtualHeight / 8}
         },
         ['faceB'] = {
             {virtualWidth / 3.4, virtualHeight / 4.7},
@@ -167,16 +191,18 @@ end
 
 function MapRenderer:render()
     -- draw floors
-    persp.setRepeat({26/62 + X_UV_OFF, 18/48 - Y_UV_OFF}, {1/62, 1/48})
+    persp.setRepeat({26/62 + X_UV_OFF, 18/48}, {1/62 - 1/(62*32), 1/48})
     self:drawQuad('floorA')
+    self:drawQuad('floorA-L')
+    self:drawQuad('floorA-R')
     self:drawQuad('floorB')
     self:drawQuad('floorC')
     self:drawQuad('floorD')
 
     -- draw walls
-    persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62, 1/48})
-    self:drawQuad('wallLeftA')
-    self:drawQuad('wallRightA')
+    persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
+    -- self:drawQuad('wallLeftA')
+    -- self:drawQuad('wallRightA')
     self:drawQuad('wallLeftB')
     self:drawQuad('wallRightB')
     self:drawQuad('wallLeftC')
@@ -189,4 +215,6 @@ function MapRenderer:render()
     -- self:drawQuad('faceC')
     -- self:drawQuad('faceB')
     -- self:drawQuad('faceA')
+    self:drawQuad('faceA-L')
+    self:drawQuad('faceA-R')
 end
