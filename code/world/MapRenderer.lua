@@ -39,49 +39,49 @@ function MapRenderer:init(map)
         },
         ['wallLeftA'] = {
             {-virtualWidth / 12, -virtualHeight / 8},
-            {virtualWidth / 7, virtualHeight / 12},
+            {virtualWidth / 7, virtualHeight / 13},
             {virtualWidth / 7, virtualHeight - virtualHeight / 8},
             {-virtualWidth / 12, virtualHeight + virtualHeight / 6}
         },
         ['wallRightA'] = {
             {virtualWidth + virtualWidth / 12, -virtualHeight / 8},
-            {virtualWidth - virtualWidth / 7, virtualHeight / 12},
+            {virtualWidth - virtualWidth / 7, virtualHeight / 13},
             {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
             {virtualWidth + virtualWidth / 12, virtualHeight + virtualHeight / 6}
         },
         ['wallLeftB'] = {
-            {virtualWidth / 7, virtualHeight / 12},
-            {virtualWidth / 3.4, virtualHeight / 4.3},
+            {virtualWidth / 7, virtualHeight / 13},
+            {virtualWidth / 3.4, virtualHeight / 4.7},
             {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
             {virtualWidth / 7, virtualHeight - virtualHeight / 8}
         },
         ['wallRightB'] = {
-            {virtualWidth - virtualWidth / 7, virtualHeight / 12},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight / 4.3},
+            {virtualWidth - virtualWidth / 7, virtualHeight / 13},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight / 4.7},
             {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
             {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8}
         },
         ['wallLeftC'] = {
-            {virtualWidth / 3.4, virtualHeight / 4.3},
-            {virtualWidth / 2.55, virtualHeight / 3.1},
+            {virtualWidth / 3.4, virtualHeight / 4.7},
+            {virtualWidth / 2.55, virtualHeight / 3.3},
             {virtualWidth / 2.55, virtualHeight / 1.9},
             {virtualWidth / 3.4, virtualHeight - virtualHeight / 3}
         },
         ['wallRightC'] = {
-            {virtualWidth - virtualWidth / 3.4, virtualHeight / 4.3},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 3.1},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight / 4.7},
+            {virtualWidth - virtualWidth / 2.55, virtualHeight / 3.3},
             {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
             {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3}
         },
         ['wallLeftD'] = {
-            {virtualWidth / 2.55, virtualHeight / 3.1},
-            {virtualWidth / 2.25, virtualHeight / 2.75},
+            {virtualWidth / 2.55, virtualHeight / 3.3},
+            {virtualWidth / 2.25, virtualHeight / 2.85},
             {virtualWidth / 2.25, virtualHeight / 2.2},
             {virtualWidth / 2.55, virtualHeight / 1.9}
         },
         ['wallRightD'] = {
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 3.1},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.75},
+            {virtualWidth - virtualWidth / 2.55, virtualHeight / 3.3},
+            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.85},
             {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
             {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9}
         },
