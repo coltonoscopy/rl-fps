@@ -18,7 +18,7 @@ function ExploreState:init()
         x = 7,
         y = 4,
         texture = gTextures['tiles'],
-        frame = 129,
+        frame = 2924,
     }
 
     self.mapRenderer = MapRenderer(self.map)

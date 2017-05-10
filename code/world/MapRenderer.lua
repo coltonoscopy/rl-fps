@@ -26,34 +26,52 @@ function MapRenderer:init(map)
             {virtualWidth / 7, virtualHeight - virtualHeight / 8},
         },
         ['floorC'] = {
-            {virtualWidth / 2.45, virtualHeight / 2},
-            {virtualWidth - virtualWidth / 2.45, virtualHeight / 2},
+            {virtualWidth / 2.55, virtualHeight / 1.9},
+            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
             {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
             {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
         },
+        ['floorD'] = {
+            {virtualWidth / 2.25, virtualHeight / 2.2},
+            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
+            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
+            {virtualWidth / 2.55, virtualHeight / 1.9},
+        },
         ['wallLeftA'] = {
-            {-virtualWidth / 12, -virtualHeight / 4},
+            {-virtualWidth / 12, -virtualHeight / 6},
             {virtualWidth / 7, virtualHeight / 12},
             {virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {-virtualWidth / 7, virtualHeight + virtualHeight / 4}
+            {-virtualWidth / 12, virtualHeight + virtualHeight / 6}
         },
         ['wallRightA'] = {
-            {virtualWidth + virtualWidth / 12, -virtualHeight / 4},
+            {virtualWidth + virtualWidth / 12, -virtualHeight / 6},
             {virtualWidth - virtualWidth / 7, virtualHeight / 12},
             {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {virtualWidth + virtualWidth / 7, virtualHeight + virtualHeight / 4}
+            {virtualWidth + virtualWidth / 12, virtualHeight + virtualHeight / 6}
         },
         ['wallLeftB'] = {
             {virtualWidth / 7, virtualHeight / 12},
-            {virtualWidth / 3.4, virtualHeight / 8 * 2.5},
+            {virtualWidth / 3.4, virtualHeight / 3.8},
             {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
             {virtualWidth / 7, virtualHeight - virtualHeight / 8}
         },
         ['wallRightB'] = {
             {virtualWidth - virtualWidth / 7, virtualHeight / 12},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight / 8 * 2.5},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight / 3.8},
             {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
             {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8}
+        },
+        ['wallLeftC'] = {
+            {virtualWidth / 3.4, virtualHeight / 3.8},
+            {virtualWidth / 2.55, virtualHeight / 2.7},
+            {virtualWidth / 2.55, virtualHeight / 1.9},
+            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3}
+        },
+        ['wallRightC'] = {
+            {virtualWidth - virtualWidth / 3.4, virtualHeight / 3.8},
+            {virtualWidth - virtualWidth / 2.55, virtualHeight / 2.7},
+            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3}
         },
     }
 end
@@ -117,6 +135,7 @@ function MapRenderer:render()
     self:drawQuad('floorA')
     self:drawQuad('floorB')
     self:drawQuad('floorC')
+    self:drawQuad('floorD')
 
     -- draw walls
     persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62, 1/48})
@@ -124,14 +143,6 @@ function MapRenderer:render()
     self:drawQuad('wallRightA')
     self:drawQuad('wallLeftB')
     self:drawQuad('wallRightB')
-
-    -- -- draw left wall
-    -- persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62, 1/48})
-    -- persp.quad(gTextures['tiles'], self.leftWallNear[1], self.leftWallNear[2],
-    --     self.leftWallNear[3], self.leftWallNear[4])
-    --
-    -- -- draw right wall
-    -- persp.setRepeat({25/62 + X_UV_OFF, 16/48 - Y_UV_OFF}, {1/62, 1/48})
-    -- persp.quad(gTextures['tiles'], self.rightWallNear[1], self.rightWallNear[2],
-    --     self.rightWallNear[3], self.rightWallNear[4])
+    self:drawQuad('wallLeftC')
+    self:drawQuad('wallRightC')
 end
