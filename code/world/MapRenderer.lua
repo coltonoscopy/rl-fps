@@ -85,6 +85,30 @@ function MapRenderer:init(map)
             {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
             {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9}
         },
+        ['faceA'] = {
+            {virtualWidth / 7, virtualHeight / 13},
+            {virtualWidth - virtualWidth / 7, virtualHeight / 13},
+            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
+            {virtualWidth / 7, virtualHeight - virtualHeight / 8}
+        },
+        ['faceB'] = {
+            {virtualWidth / 3.4, virtualHeight / 4.7},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight / 4.7},
+            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
+            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3}
+        },
+        ['faceC'] = {
+            {virtualWidth / 2.55, virtualHeight / 3.3},
+            {virtualWidth - virtualWidth / 2.55, virtualHeight / 3.3},
+            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
+            {virtualWidth / 2.55, virtualHeight / 1.9}
+        },
+        ['faceD'] = {
+            {virtualWidth / 2.25, virtualHeight / 2.85},
+            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.85},
+            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
+            {virtualWidth / 2.25, virtualHeight / 2.2}
+        }
     }
 end
 
@@ -159,4 +183,10 @@ function MapRenderer:render()
     self:drawQuad('wallRightC')
     self:drawQuad('wallLeftD')
     self:drawQuad('wallRightD')
+
+    -- draw faces
+    self:drawQuad('faceD')
+    -- self:drawQuad('faceC')
+    -- self:drawQuad('faceB')
+    -- self:drawQuad('faceA')
 end
