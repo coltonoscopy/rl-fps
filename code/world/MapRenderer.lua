@@ -175,13 +175,28 @@ function MapRenderer:init(map)
             {vw - vw / 2.55, vh / 1.9}
         },
         ['wallE-L'] = {
-            {},
-            {},
-            {},
-            {}
+            {-vw / 8, vh / 4.5},
+            {vw / 6, vh / 3.3},
+            {vw / 6, vh / 1.9},
+            {-vw / 8, vh - vh / 3}
         },
         ['wallE-R'] = {
-
+            {vw + vw / 8, vh / 4.5},
+            {vw - vw / 6, vh / 3.3},
+            {vw - vw / 6, vh / 1.9},
+            {vw + vw / 8, vh - vh / 3}
+        },
+        ['wallF-L'] = {
+            {vw / 6, vh / 3.3},
+            {vw / 3.15, vh / 2.85},
+            {vw / 3.15, vh / 2.2},
+            {vw / 6, vh / 1.9},
+        },
+        ['wallF-R'] = {
+            {vw - vw / 6, vh / 3.3},
+            {vw - vw / 3.15, vh / 2.85},
+            {vw - vw / 3.15, vh / 2.2},
+            {vw - vw / 6, vh / 1.9},
         },
         ['faceA'] = {
             {vw / 7, vh / 13},
@@ -376,17 +391,6 @@ function MapRenderer:render()
     -- draw walls
     persp.setRepeat({26/62 + X_UV_OFF, 17/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
 
-    -- self:drawQuad('wallA-L')
-    -- self:drawQuad('wallA-R')
-    -- self:drawQuad('wallB-L')
-    -- self:drawQuad('wallB-R')
-
-    self:drawQuad('wallC-L')
-    self:drawQuad('wallC-R')
-
-    -- self:drawQuad('wallD-L')
-    -- self:drawQuad('wallD-R')
-
     -- draw faces
     self:drawQuad('faceD')
     self:drawQuad('faceD-L')
@@ -401,6 +405,23 @@ function MapRenderer:render()
     -- self:drawQuad('faceC-LL')
     -- self:drawQuad('faceC-R')
     -- self:drawQuad('faceC-RR')
+
+    self:drawQuad('wallE-L')
+    self:drawQuad('wallE-R')
+
+    self:drawQuad('wallF-L')
+    self:drawQuad('wallF-R')
+
+    -- self:drawQuad('wallA-L')
+    -- self:drawQuad('wallA-R')
+    -- self:drawQuad('wallB-L')
+    -- self:drawQuad('wallB-R')
+
+    -- self:drawQuad('wallC-L')
+    -- self:drawQuad('wallC-R')
+
+    -- self:drawQuad('wallD-L')
+    -- self:drawQuad('wallD-R')
 
     -- self:drawQuad('faceB')
     -- self:drawQuad('faceA')
