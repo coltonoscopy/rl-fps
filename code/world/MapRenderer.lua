@@ -5,16 +5,17 @@
 
 MapRenderer = Class{}
 
+-- UV offsets to clean up bleeding edges
 X_UV_OFF = 0.003
 Y_UV_OFF = 0.000001
 
 function MapRenderer:init(map)
     self.map = map
 
-    -- reference to virtualWidth and virtualHeight, avoid typing chars
+    -- references to virtualWidth and virtualHeight, avoid typing chars
     local vw = virtualWidth
     local vh = virtualHeight
-    
+
     -- all the quads that represent our scene
     self.quads = {
         ['floorA'] = {
@@ -380,8 +381,8 @@ function MapRenderer:render()
     -- self:drawQuad('wallB-L')
     -- self:drawQuad('wallB-R')
 
-    -- self:drawQuad('wallC-L')
-    -- self:drawQuad('wallC-R')
+    self:drawQuad('wallC-L')
+    self:drawQuad('wallC-R')
 
     -- self:drawQuad('wallD-L')
     -- self:drawQuad('wallD-R')
