@@ -126,6 +126,114 @@ function MapRenderer:init(map)
             {vw + vw / 10, vh / 1.9},
             {vw + vw / 6, vh / 1.9},
         },
+        ['ceilingA'] = {
+            {vw / 7, vh - vh / 8},
+            {vw - vw / 7, vh - vh / 8},
+            {vw + vw / 5, vh + vh / 3},
+            {-vw / 5, vh + vh / 3}
+        },
+        ['ceilingA-L'] = {
+            {-vw / 3, vh - vh / 8},
+            {vw / 7, vh - vh / 8},
+            {-vw / 23, vh + vh / 8},
+            {-vw / 3, vh + vh / 8}
+        },
+        ['ceilingA-R'] = {
+            {vw + vw / 3, vh - vh / 8},
+            {vw - vw / 7, vh - vh / 8},
+            {vw + vw / 23, vh + vh / 8},
+            {vw + vw / 3, vh + vh / 8}
+        },
+        ['ceilingB'] = {
+            {vw / 3.4, vh - vh / 3},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw - vw / 7, vh - vh / 8},
+            {vw / 7, vh - vh / 8},
+        },
+        ['ceilingB-L'] = {
+            {-vw / 8, vh - vh / 3},
+            {vw / 3.4, vh - vh / 3},
+            {vw / 7, vh - vh / 8},
+            {-vw / 3, vh - vh / 8},
+        },
+        ['ceilingB-R'] = {
+            {vw + vw / 8, vh - vh / 3},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw - vw / 7, vh - vh / 8},
+            {vw + vw / 3, vh - vh / 8},
+        },
+        ['ceilingC'] = {
+            {vw / 2.55, vh / 1.9},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw / 3.4, vh - vh / 3},
+        },
+        ['ceilingC-L'] = {
+            {vw / 6, vh / 1.9},
+            {vw / 2.55, vh / 1.9},
+            {vw / 3.4, vh - vh / 3},
+            {-vw / 8, vh - vh / 3},
+        },
+        ['ceilingC-LL'] = {
+            {-vw / 10, vh / 1.9},
+            {vw / 6, vh / 1.9},
+            {-vw / 8, vh - vh / 3},
+            {-vw / 4, vh - vh / 3},
+        },
+        ['ceilingC-R'] = {
+            {vw - vw / 6, vh / 1.9},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw + vw / 8, vh - vh / 3},
+        },
+        ['ceilingC-RR'] = {
+            {vw + vw / 10, vh / 1.9},
+            {vw - vw / 6, vh / 1.9},
+            {vw + vw / 8, vh - vh / 3},
+            {vw + vw / 4, vh - vh / 3},
+        },
+        ['ceilingD'] = {
+            {vw / 2.25, vh / 2.2},
+            {vw - vw / 2.25, vh / 2.2},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw / 2.55, vh / 1.9},
+        },
+        ['ceilingD-L'] = {
+            {vw / 3.15, vh / 2.2},
+            {vw / 2.25, vh / 2.2},
+            {vw / 2.55, vh / 1.9},
+            {vw / 6, vh / 1.9},
+        },
+        ['ceilingD-LL'] = {
+            {vw / 6, vh / 2.2},
+            {vw / 2.25, vh / 2.2},
+            {vw / 6, vh / 1.9},
+            {-vw / 10, vh / 1.9},
+        },
+        ['ceilingD-LLL'] = {
+            {0, vh / 2.2},
+            {vw / 6, vh / 2.2},
+            {-vw / 10, vh / 1.9},
+            {-vw / 6, vh / 1.9},
+        },
+        ['ceilingD-R'] = {
+            {vw - vw / 3.15, vh / 2.2},
+            {vw - vw / 2.25, vh / 2.2},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw - vw / 6, vh / 1.9},
+        },
+        ['ceilingD-RR'] = {
+            {vw - vw / 6, vh / 2.2},
+            {vw - vw / 2.25, vh / 2.2},
+            {vw - vw / 6, vh / 1.9},
+            {vw + vw / 10, vh / 1.9},
+        },
+        ['ceilingD-RRR'] = {
+            {vw, vh / 2.2},
+            {vw - vw / 6, vh / 2.2},
+            {vw + vw / 10, vh / 1.9},
+            {vw + vw / 6, vh / 1.9},
+        },
         ['wallA-L'] = {
             {-vw / 12, -vh / 8},
             {vw / 7, vh / 13},
@@ -387,6 +495,28 @@ function MapRenderer:render()
     self:drawQuad('floorD-R')
     self:drawQuad('floorD-RR')
     self:drawQuad('floorD-RRR')
+
+    self:drawQuad('ceilingA')
+    self:drawQuad('ceilingA-L')
+    self:drawQuad('ceilingA-R')
+
+    self:drawQuad('ceilingB')
+    self:drawQuad('ceilingB-L')
+    self:drawQuad('ceilingB-R')
+
+    self:drawQuad('ceilingC')
+    self:drawQuad('ceilingC-L')
+    self:drawQuad('ceilingC-LL')
+    self:drawQuad('ceilingC-R')
+    self:drawQuad('ceilingC-RR')
+
+    self:drawQuad('ceilingD')
+    self:drawQuad('ceilingD-L')
+    self:drawQuad('ceilingD-LL')
+    self:drawQuad('ceilingD-LLL')
+    self:drawQuad('ceilingD-R')
+    self:drawQuad('ceilingD-RR')
+    self:drawQuad('ceilingD-RRR')
 
     -- draw walls
     persp.setRepeat({26/62 + X_UV_OFF, 17/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
