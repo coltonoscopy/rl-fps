@@ -11,271 +11,284 @@ Y_UV_OFF = 0.000001
 function MapRenderer:init(map)
     self.map = map
 
+    -- reference to virtualWidth and virtualHeight, avoid typing chars
+    local vw = virtualWidth
+    local vh = virtualHeight
+    
     -- all the quads that represent our scene
     self.quads = {
         ['floorA'] = {
-            {virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {virtualWidth + virtualWidth / 5, virtualHeight + virtualHeight / 3},
-            {-virtualWidth / 5, virtualHeight + virtualHeight / 3}
+            {vw / 7, vh - vh / 8},
+            {vw - vw / 7, vh - vh / 8},
+            {vw + vw / 5, vh + vh / 3},
+            {-vw / 5, vh + vh / 3}
         },
         ['floorA-L'] = {
-            {-virtualWidth / 3, virtualHeight - virtualHeight / 8},
-            {virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {-virtualWidth / 23, virtualHeight + virtualHeight / 8},
-            {-virtualWidth / 3, virtualHeight + virtualHeight / 8}
+            {-vw / 3, vh - vh / 8},
+            {vw / 7, vh - vh / 8},
+            {-vw / 23, vh + vh / 8},
+            {-vw / 3, vh + vh / 8}
         },
         ['floorA-R'] = {
-            {virtualWidth + virtualWidth / 3, virtualHeight - virtualHeight / 8},
-            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {virtualWidth + virtualWidth / 23, virtualHeight + virtualHeight / 8},
-            {virtualWidth + virtualWidth / 3, virtualHeight + virtualHeight / 8}
+            {vw + vw / 3, vh - vh / 8},
+            {vw - vw / 7, vh - vh / 8},
+            {vw + vw / 23, vh + vh / 8},
+            {vw + vw / 3, vh + vh / 8}
         },
         ['floorB'] = {
-            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {virtualWidth / 7, virtualHeight - virtualHeight / 8},
+            {vw / 3.4, vh - vh / 3},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw - vw / 7, vh - vh / 8},
+            {vw / 7, vh - vh / 8},
         },
         ['floorB-L'] = {
-            {-virtualWidth / 8, virtualHeight - virtualHeight / 3},
-            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {-virtualWidth / 3, virtualHeight - virtualHeight / 8},
+            {-vw / 8, vh - vh / 3},
+            {vw / 3.4, vh - vh / 3},
+            {vw / 7, vh - vh / 8},
+            {-vw / 3, vh - vh / 8},
         },
         ['floorB-R'] = {
-            {virtualWidth + virtualWidth / 8, virtualHeight - virtualHeight / 3},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {virtualWidth + virtualWidth / 3, virtualHeight - virtualHeight / 8},
+            {vw + vw / 8, vh - vh / 3},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw - vw / 7, vh - vh / 8},
+            {vw + vw / 3, vh - vh / 8},
         },
         ['floorC'] = {
-            {virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
+            {vw / 2.55, vh / 1.9},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw / 3.4, vh - vh / 3},
         },
         ['floorC-L'] = {
-            {virtualWidth / 6, virtualHeight / 1.9},
-            {virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {-virtualWidth / 8, virtualHeight - virtualHeight / 3},
+            {vw / 6, vh / 1.9},
+            {vw / 2.55, vh / 1.9},
+            {vw / 3.4, vh - vh / 3},
+            {-vw / 8, vh - vh / 3},
         },
         ['floorC-LL'] = {
-            {-virtualWidth / 10, virtualHeight / 1.9},
-            {virtualWidth / 6, virtualHeight / 1.9},
-            {-virtualWidth / 8, virtualHeight - virtualHeight / 3},
-            {-virtualWidth / 4, virtualHeight - virtualHeight / 3},
+            {-vw / 10, vh / 1.9},
+            {vw / 6, vh / 1.9},
+            {-vw / 8, vh - vh / 3},
+            {-vw / 4, vh - vh / 3},
         },
         ['floorC-R'] = {
-            {virtualWidth - virtualWidth / 6, virtualHeight / 1.9},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth + virtualWidth / 8, virtualHeight - virtualHeight / 3},
+            {vw - vw / 6, vh / 1.9},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw + vw / 8, vh - vh / 3},
         },
         ['floorC-RR'] = {
-            {virtualWidth + virtualWidth / 10, virtualHeight / 1.9},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 1.9},
-            {virtualWidth + virtualWidth / 8, virtualHeight - virtualHeight / 3},
-            {virtualWidth + virtualWidth / 4, virtualHeight - virtualHeight / 3},
+            {vw + vw / 10, vh / 1.9},
+            {vw - vw / 6, vh / 1.9},
+            {vw + vw / 8, vh - vh / 3},
+            {vw + vw / 4, vh - vh / 3},
         },
         ['floorD'] = {
-            {virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth / 2.55, virtualHeight / 1.9},
+            {vw / 2.25, vh / 2.2},
+            {vw - vw / 2.25, vh / 2.2},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw / 2.55, vh / 1.9},
         },
         ['floorD-L'] = {
-            {virtualWidth / 3.15, virtualHeight / 2.2},
-            {virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth / 6, virtualHeight / 1.9},
+            {vw / 3.15, vh / 2.2},
+            {vw / 2.25, vh / 2.2},
+            {vw / 2.55, vh / 1.9},
+            {vw / 6, vh / 1.9},
         },
         ['floorD-LL'] = {
-            {virtualWidth / 6, virtualHeight / 2.2},
-            {virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth / 6, virtualHeight / 1.9},
-            {-virtualWidth / 10, virtualHeight / 1.9},
+            {vw / 6, vh / 2.2},
+            {vw / 2.25, vh / 2.2},
+            {vw / 6, vh / 1.9},
+            {-vw / 10, vh / 1.9},
         },
         ['floorD-LLL'] = {
-            {0, virtualHeight / 2.2},
-            {virtualWidth / 6, virtualHeight / 2.2},
-            {-virtualWidth / 10, virtualHeight / 1.9},
-            {-virtualWidth / 6, virtualHeight / 1.9},
+            {0, vh / 2.2},
+            {vw / 6, vh / 2.2},
+            {-vw / 10, vh / 1.9},
+            {-vw / 6, vh / 1.9},
         },
         ['floorD-R'] = {
-            {virtualWidth - virtualWidth / 3.15, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 1.9},
+            {vw - vw / 3.15, vh / 2.2},
+            {vw - vw / 2.25, vh / 2.2},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw - vw / 6, vh / 1.9},
         },
         ['floorD-RR'] = {
-            {virtualWidth - virtualWidth / 6, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 1.9},
-            {virtualWidth + virtualWidth / 10, virtualHeight / 1.9},
+            {vw - vw / 6, vh / 2.2},
+            {vw - vw / 2.25, vh / 2.2},
+            {vw - vw / 6, vh / 1.9},
+            {vw + vw / 10, vh / 1.9},
         },
         ['floorD-RRR'] = {
-            {virtualWidth, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 2.2},
-            {virtualWidth + virtualWidth / 10, virtualHeight / 1.9},
-            {virtualWidth + virtualWidth / 6, virtualHeight / 1.9},
+            {vw, vh / 2.2},
+            {vw - vw / 6, vh / 2.2},
+            {vw + vw / 10, vh / 1.9},
+            {vw + vw / 6, vh / 1.9},
         },
         ['wallA-L'] = {
-            {-virtualWidth / 12, -virtualHeight / 8},
-            {virtualWidth / 7, virtualHeight / 13},
-            {virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {-virtualWidth / 12, virtualHeight + virtualHeight / 6}
+            {-vw / 12, -vh / 8},
+            {vw / 7, vh / 13},
+            {vw / 7, vh - vh / 8},
+            {-vw / 12, vh + vh / 6}
         },
         ['wallA-R'] = {
-            {virtualWidth + virtualWidth / 12, -virtualHeight / 8},
-            {virtualWidth - virtualWidth / 7, virtualHeight / 13},
-            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {virtualWidth + virtualWidth / 12, virtualHeight + virtualHeight / 6}
+            {vw + vw / 12, -vh / 8},
+            {vw - vw / 7, vh / 13},
+            {vw - vw / 7, vh - vh / 8},
+            {vw + vw / 12, vh + vh / 6}
         },
         ['wallB-L'] = {
-            {virtualWidth / 7, virtualHeight / 13},
-            {virtualWidth / 3.4, virtualHeight / 4.7},
-            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth / 7, virtualHeight - virtualHeight / 8}
+            {vw / 7, vh / 13},
+            {vw / 3.4, vh / 4.7},
+            {vw / 3.4, vh - vh / 3},
+            {vw / 7, vh - vh / 8}
         },
         ['wallB-R'] = {
-            {virtualWidth - virtualWidth / 7, virtualHeight / 13},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight / 4.7},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8}
+            {vw - vw / 7, vh / 13},
+            {vw - vw / 3.4, vh / 4.7},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw - vw / 7, vh - vh / 8}
         },
         ['wallC-L'] = {
-            {virtualWidth / 3.4, virtualHeight / 4.7},
-            {virtualWidth / 2.55, virtualHeight / 3.3},
-            {virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3}
+            {vw / 3.4, vh / 4.7},
+            {vw / 2.55, vh / 3.3},
+            {vw / 2.55, vh / 1.9},
+            {vw / 3.4, vh - vh / 3}
         },
         ['wallC-R'] = {
-            {virtualWidth - virtualWidth / 3.4, virtualHeight / 4.7},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 3.3},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3}
+            {vw - vw / 3.4, vh / 4.7},
+            {vw - vw / 2.55, vh / 3.3},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw - vw / 3.4, vh - vh / 3}
         },
         ['wallD-L'] = {
-            {virtualWidth / 2.55, virtualHeight / 3.3},
-            {virtualWidth / 2.25, virtualHeight / 2.85},
-            {virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth / 2.55, virtualHeight / 1.9}
+            {vw / 2.55, vh / 3.3},
+            {vw / 2.25, vh / 2.85},
+            {vw / 2.25, vh / 2.2},
+            {vw / 2.55, vh / 1.9}
         },
         ['wallD-R'] = {
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 3.3},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.85},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9}
+            {vw - vw / 2.55, vh / 3.3},
+            {vw - vw / 2.25, vh / 2.85},
+            {vw - vw / 2.25, vh / 2.2},
+            {vw - vw / 2.55, vh / 1.9}
+        },
+        ['wallE-L'] = {
+            {},
+            {},
+            {},
+            {}
+        },
+        ['wallE-R'] = {
+
         },
         ['faceA'] = {
-            {virtualWidth / 7, virtualHeight / 13},
-            {virtualWidth - virtualWidth / 7, virtualHeight / 13},
-            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {virtualWidth / 7, virtualHeight - virtualHeight / 8}
+            {vw / 7, vh / 13},
+            {vw - vw / 7, vh / 13},
+            {vw - vw / 7, vh - vh / 8},
+            {vw / 7, vh - vh / 8}
         },
         ['faceA-L'] = {
-            {-virtualWidth / 2, virtualHeight / 13},
-            {virtualWidth / 7, virtualHeight / 13},
-            {virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {-virtualWidth / 2, virtualHeight - virtualHeight / 8}
+            {-vw / 2, vh / 13},
+            {vw / 7, vh / 13},
+            {vw / 7, vh - vh / 8},
+            {-vw / 2, vh - vh / 8}
         },
         ['faceA-R'] = {
-            {virtualWidth + virtualWidth / 2, virtualHeight / 13},
-            {virtualWidth - virtualWidth / 7, virtualHeight / 13},
-            {virtualWidth - virtualWidth / 7, virtualHeight - virtualHeight / 8},
-            {virtualWidth + virtualWidth / 2, virtualHeight - virtualHeight / 8}
+            {vw + vw / 2, vh / 13},
+            {vw - vw / 7, vh / 13},
+            {vw - vw / 7, vh - vh / 8},
+            {vw + vw / 2, vh - vh / 8}
         },
         ['faceB'] = {
-            {virtualWidth / 3.4, virtualHeight / 4.7},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight / 4.7},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3}
+            {vw / 3.4, vh / 4.7},
+            {vw - vw / 3.4, vh / 4.7},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw / 3.4, vh - vh / 3}
         },
         ['faceB-L'] = {
-            {-virtualWidth / 8, virtualHeight / 4.7},
-            {virtualWidth / 3.4, virtualHeight / 4.7},
-            {virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {-virtualWidth / 8, virtualHeight - virtualHeight / 3}
+            {-vw / 8, vh / 4.7},
+            {vw / 3.4, vh / 4.7},
+            {vw / 3.4, vh - vh / 3},
+            {-vw / 8, vh - vh / 3}
         },
         ['faceB-R'] = {
-            {virtualWidth + virtualWidth / 8, virtualHeight / 4.7},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight / 4.7},
-            {virtualWidth - virtualWidth / 3.4, virtualHeight - virtualHeight / 3},
-            {virtualWidth + virtualWidth / 8, virtualHeight - virtualHeight / 3}
+            {vw + vw / 8, vh / 4.7},
+            {vw - vw / 3.4, vh / 4.7},
+            {vw - vw / 3.4, vh - vh / 3},
+            {vw + vw / 8, vh - vh / 3}
         },
         ['faceC'] = {
-            {virtualWidth / 2.55, virtualHeight / 3.3},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 3.3},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth / 2.55, virtualHeight / 1.9}
+            {vw / 2.55, vh / 3.3},
+            {vw - vw / 2.55, vh / 3.3},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw / 2.55, vh / 1.9}
         },
         ['faceC-L'] = {
-            {virtualWidth / 6, virtualHeight / 3.3},
-            {virtualWidth / 2.55, virtualHeight / 3.3},
-            {virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth / 6, virtualHeight / 1.9}
+            {vw / 6, vh / 3.3},
+            {vw / 2.55, vh / 3.3},
+            {vw / 2.55, vh / 1.9},
+            {vw / 6, vh / 1.9}
         },
         ['faceC-LL'] = {
-            {-virtualWidth / 10, virtualHeight / 3.3},
-            {virtualWidth / 6, virtualHeight / 3.3},
-            {virtualWidth / 6, virtualHeight / 1.9},
-            {-virtualWidth / 10, virtualHeight / 1.9}
+            {-vw / 10, vh / 3.3},
+            {vw / 6, vh / 3.3},
+            {vw / 6, vh / 1.9},
+            {-vw / 10, vh / 1.9}
         },
         ['faceC-R'] = {
-            {virtualWidth - virtualWidth / 6, virtualHeight / 3.3},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 3.3},
-            {virtualWidth - virtualWidth / 2.55, virtualHeight / 1.9},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 1.9}
+            {vw - vw / 6, vh / 3.3},
+            {vw - vw / 2.55, vh / 3.3},
+            {vw - vw / 2.55, vh / 1.9},
+            {vw - vw / 6, vh / 1.9}
         },
         ['faceC-RR'] = {
-            {virtualWidth + virtualWidth / 10, virtualHeight / 3.3},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 3.3},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 1.9},
-            {virtualWidth + virtualWidth / 10, virtualHeight / 1.9}
+            {vw + vw / 10, vh / 3.3},
+            {vw - vw / 6, vh / 3.3},
+            {vw - vw / 6, vh / 1.9},
+            {vw + vw / 10, vh / 1.9}
         },
         ['faceD'] = {
-            {virtualWidth / 2.25, virtualHeight / 2.85},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.85},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth / 2.25, virtualHeight / 2.2}
+            {vw / 2.25, vh / 2.85},
+            {vw - vw / 2.25, vh / 2.85},
+            {vw - vw / 2.25, vh / 2.2},
+            {vw / 2.25, vh / 2.2}
         },
         ['faceD-L'] = {
-            {virtualWidth / 3.15, virtualHeight / 2.85},
-            {virtualWidth / 2.25, virtualHeight / 2.85},
-            {virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth / 3.15, virtualHeight / 2.2}
+            {vw / 3.15, vh / 2.85},
+            {vw / 2.25, vh / 2.85},
+            {vw / 2.25, vh / 2.2},
+            {vw / 3.15, vh / 2.2}
         },
         ['faceD-LL'] = {
-            {virtualWidth / 6, virtualHeight / 2.85},
-            {virtualWidth / 3.15, virtualHeight / 2.85},
-            {virtualWidth / 3.15, virtualHeight / 2.2},
-            {virtualWidth / 6, virtualHeight / 2.2}
+            {vw / 6, vh / 2.85},
+            {vw / 3.15, vh / 2.85},
+            {vw / 3.15, vh / 2.2},
+            {vw / 6, vh / 2.2}
         },
         ['faceD-LLL'] = {
-            {0, virtualHeight / 2.85},
-            {virtualWidth / 6, virtualHeight / 2.85},
-            {virtualWidth / 6, virtualHeight / 2.2},
-            {0, virtualHeight / 2.2}
+            {0, vh / 2.85},
+            {vw / 6, vh / 2.85},
+            {vw / 6, vh / 2.2},
+            {0, vh / 2.2}
         },
         ['faceD-R'] = {
-            {virtualWidth - virtualWidth / 3.15, virtualHeight / 2.85},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.85},
-            {virtualWidth - virtualWidth / 2.25, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 3.15, virtualHeight / 2.2}
+            {vw - vw / 3.15, vh / 2.85},
+            {vw - vw / 2.25, vh / 2.85},
+            {vw - vw / 2.25, vh / 2.2},
+            {vw - vw / 3.15, vh / 2.2}
         },
         ['faceD-RR'] = {
-            {virtualWidth - virtualWidth / 6, virtualHeight / 2.85},
-            {virtualWidth - virtualWidth / 3.15, virtualHeight / 2.85},
-            {virtualWidth - virtualWidth / 3.15, virtualHeight / 2.2},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 2.2}
+            {vw - vw / 6, vh / 2.85},
+            {vw - vw / 3.15, vh / 2.85},
+            {vw - vw / 3.15, vh / 2.2},
+            {vw - vw / 6, vh / 2.2}
         },
         ['faceD-RRR'] = {
-            {virtualWidth, virtualHeight / 2.85},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 2.85},
-            {virtualWidth - virtualWidth / 6, virtualHeight / 2.2},
-            {virtualWidth, virtualHeight / 2.2}
+            {vw, vh / 2.85},
+            {vw - vw / 6, vh / 2.85},
+            {vw - vw / 6, vh / 2.2},
+            {vw, vh / 2.2}
         }
     }
 end
