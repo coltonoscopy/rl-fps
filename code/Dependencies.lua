@@ -28,7 +28,7 @@ require 'code/world/Map'
 require 'code/world/MapRenderer'
 
 gTextures = {
-    ['tiles'] = love.graphics.newImage('graphics/tiles_32.png'),
+    ['tiles'] = love.graphics.newImage('graphics/tiles_db.png'),
 }
 gTextures['tiles']:setFilter('nearest', 'nearest')
 
