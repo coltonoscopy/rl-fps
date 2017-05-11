@@ -21,7 +21,7 @@ function Minimap:computeMinimap()
 
     for y = 1, self.map.mapHeight do
         for x = 1, self.map.mapWidth do
-            if self.map:getTile(x - 1, y - 1) and self.map:getTile(x - 1, y - 1).id == 858 then
+            if self.map:getTile(x, y) and self.map:getTile(x, y).id == 858 then
                 self.pixelData:setPixel(x - 1, y - 1, 160, 160, 160, 255)
             else
                 self.pixelData:setPixel(x - 1, y - 1, 48, 48, 48, 255)
@@ -31,7 +31,7 @@ function Minimap:computeMinimap()
 
     if self.player.x >= 0 and self.player.y >= 0 and
         self.player.x < self.map.mapWidth and self.player.y < self.map.mapHeight then
-        self.pixelData:setPixel(self.player.x, self.player.y, 255, 0, 0, 255)
+        self.pixelData:setPixel(self.player.x - 1, self.player.y - 1, 255, 0, 0, 255)
     end
 
     self.mapImg = love.graphics.newImage(self.pixelData)

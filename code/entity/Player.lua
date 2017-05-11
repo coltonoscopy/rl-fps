@@ -153,15 +153,49 @@ function Player:computeVisibleTiles()
     end
 end
 
+--[[
+    Global to the map, not the player's direction.
+]]
+function Player:globalMoveUp()
+    if self.map:getTile(self.x, self.y - 1)
+        and self.map:getTile(self.x, self.y - 1).id ~= 858 then
+        self.y = self.y - 1
+    end
+end
+
+function Player:globalMoveDown()
+    if self.map:getTile(self.x, self.y + 1)
+        and self.map:getTile(self.x, self.y + 1).id ~= 858 then
+        self.y = self.y + 1
+    end
+end
+
+function Player:globalMoveLeft()
+    if self.map:getTile(self.x - 1, self.y)
+        and self.map:getTile(self.x - 1, self.y).id ~= 858 then
+        self.x = self.x - 1
+    end
+end
+
+function Player:globalMoveRight()
+    if self.map:getTile(self.x + 1, self.y)
+        and self.map:getTile(self.x + 1, self.y).id ~= 858 then
+        self.x = self.x + 1
+    end
+end
+
+--[[
+    Dispatches to the appropriate move call depending on the player's orientation.
+]]
 function Player:attemptMoveForward()
     if self.direction == 'N' then
-        self.y = self.y - 1
+        self:globalMoveUp()
     elseif self.direction == 'S' then
-        self.y = self.y + 1
+        self:globalMoveDown()
     elseif self.direction == 'W' then
-        self.x = self.x - 1
+        self:globalMoveLeft()
     else
-        self.x = self.x + 1
+        self:globalMoveRight()
     end
 
     self.visibleTiles = self:computeVisibleTiles()
@@ -172,13 +206,13 @@ end
 
 function Player:attemptMoveBackward()
     if self.direction == 'N' then
-        self.y = self.y + 1
+        self:globalMoveDown()
     elseif self.direction == 'S' then
-        self.y = self.y - 1
+        self:globalMoveUp()
     elseif self.direction == 'W' then
-        self.x = self.x + 1
+        self:globalMoveRight()
     else
-        self.x = self.x - 1
+        self:globalMoveLeft()
     end
 
     self.visibleTiles = self:computeVisibleTiles()
@@ -187,13 +221,13 @@ end
 
 function Player:attemptMoveLeft()
     if self.direction == 'N' then
-        self.x = self.x - 1
+        self:globalMoveLeft()
     elseif self.direction == 'S' then
-        self.x = self.x + 1
+        self:globalMoveRight()
     elseif self.direction == 'W' then
-        self.y = self.y + 1
+        self:globalMoveDown()
     else
-        self.y = self.y - 1
+        self:globalMoveUp()
     end
 
     self.visibleTiles = self:computeVisibleTiles()
@@ -202,13 +236,13 @@ end
 
 function Player:attemptMoveRight()
     if self.direction == 'N' then
-        self.x = self.x + 1
+        self:globalMoveRight()
     elseif self.direction == 'S' then
-        self.x = self.x - 1
+        self:globalMoveLeft()
     elseif self.direction == 'W' then
-        self.y = self.y - 1
+        self:globalMoveUp()
     else
-        self.y = self.y + 1
+        self:globalMoveDown()
     end
 
     self.visibleTiles = self:computeVisibleTiles()
