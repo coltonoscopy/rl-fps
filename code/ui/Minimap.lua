@@ -27,22 +27,25 @@ function Minimap:computeMinimap()
     -- get the minimap viewport, taking into consideration map edges
     if left + 18 > self.map.mapWidth then
         right = self.map.mapWidth
+        left = right - 18
     else
         right = left + 18
     end
 
-    if top + 18 > self.map.mapHeight then
+    if top + 18 >= self.map.mapHeight then
         bottom = self.map.mapHeight
+        top = bottom - 18
     else
         bottom = top + 18
     end
 
     -- for each tile, draw 5 pixels to represent it
-    for y = top, bottom - 1 do
-        for x = left, right - 1 do
+    for y = top, bottom do
+        for x = left, right do
             print("Top: " .. top .. ", Bottom: " .. bottom)
             print("Left: " .. left .. ", Right: " .. right)
 
+            -- filled tiles
             if self.map:getTile(x, y) and self.map:getTile(x, y).id == 858 then
                 for y2 = 0, 4 do
                     for x2 = 0, 4 do
@@ -51,6 +54,7 @@ function Minimap:computeMinimap()
                     end
                 end
             else
+            -- empty tiles
                 for y2 = 0, 4 do
                     for x2 = 0, 4 do
                         self.pixelData:setPixel((x - left) * 5 + x2, (y - top) * 5 + y2,

@@ -3,6 +3,9 @@ love.keyboard.keysReleased = {}
 love.mouse.buttonsPressed = {}
 love.mouse.buttonsReleased = {}
 
+math.randomseed(os.time())
+love.math.setRandomSeed(os.time())
+
 require 'code/Dependencies'
 
 virtualWidth = 384
