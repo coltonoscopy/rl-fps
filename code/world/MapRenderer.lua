@@ -551,17 +551,17 @@ function MapRenderer:render()
     if tiles[14] and tiles[14].id == 858 then self:drawQuad('wallD-L') end
     if tiles[16] and tiles[16].id == 858 then self:drawQuad('wallD-R') end
 
-    if tiles[13] and tiles[13].id == 858 then self:drawQuad('faceC-LL') end
-    if tiles[14] and tiles[14].id == 858 then self:drawQuad('faceC-L') end
-    if tiles[15] and tiles[15].id == 858 then self:drawQuad('faceC') end
-    if tiles[16] and tiles[16].id == 858 then self:drawQuad('faceC-R') end
-    if tiles[17] and tiles[17].id == 858 then self:drawQuad('faceC-RR') end
-
     if tiles[7] and tiles[7].id == 858 then self:drawQuad('wallE-L') end
     if tiles[11] and tiles[11].id == 858 then self:drawQuad('wallE-R') end
 
     if tiles[13] and tiles[13].id == 858 then self:drawQuad('wallF-L') end
     if tiles[17] and tiles[17].id == 858 then self:drawQuad('wallF-R') end
+
+    if tiles[13] and tiles[13].id == 858 then self:drawQuad('faceC-LL') end
+    if tiles[14] and tiles[14].id == 858 then self:drawQuad('faceC-L') end
+    if tiles[15] and tiles[15].id == 858 then self:drawQuad('faceC') end
+    if tiles[16] and tiles[16].id == 858 then self:drawQuad('faceC-R') end
+    if tiles[17] and tiles[17].id == 858 then self:drawQuad('faceC-RR') end
 
     if tiles[8] and tiles[8].id == 858 then self:drawQuad('wallC-L') end
     if tiles[10] and tiles[10].id == 858 then self:drawQuad('wallC-R') end
