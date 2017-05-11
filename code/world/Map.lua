@@ -40,14 +40,18 @@ function Map:generate()
         self.tiles[(y - 1) * self.mapWidth + x] = {
             id = val == 1 and 858 or 0,
             owned = false,
-            items = {
-                ItemEntity {
+            items = {}
+        }
+
+        if math.random(10) == 1 then
+            if self.tiles[(y - 1) * self.mapWidth + x].id ~= 858 then
+                table.insert(self.tiles[(y - 1) * self.mapWidth + x].items, ItemEntity {
                     x = x,
                     y = y,
                     frame = math.random(1282, 1941)
-                }
-            }
-        }
+                })
+            end
+        end
     end, true)
 end
 

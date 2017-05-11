@@ -49,7 +49,7 @@ function Minimap:computeMinimap()
                 for y2 = 0, 4 do
                     for x2 = 0, 4 do
                         self.pixelData:setPixel((x - left) * 5 + x2, (y - top) * 5 + y2,
-                            128, 128, 128, 255)
+                            0x69, 0x6a, 0x6a, 255)
                     end
                 end
             else
@@ -57,7 +57,17 @@ function Minimap:computeMinimap()
                 for y2 = 0, 4 do
                     for x2 = 0, 4 do
                         self.pixelData:setPixel((x - left) * 5 + x2, (y - top) * 5 + y2,
-                            48, 48, 48, 255)
+                            0x32, 0x3c, 0x39, 255)
+                    end
+                end
+            end
+
+            -- draw items
+            if self.map:getTile(x, y) and #self.map:getTile(x, y).items > 0 then
+                for y2 = 0, 4 do
+                    for x2 = 0, 4 do
+                        self.pixelData:setPixel((x - left) * 5 + x2, (y - top) * 5 + y2,
+                            0x6a, 0xbe, 0x30, 255)
                     end
                 end
             end
