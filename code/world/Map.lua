@@ -30,7 +30,7 @@ end
 ]]
 function Map:generate()
     -- populate tile map
-    local brg = ROT.Map.Brogue(self.mapWidth, self.mapHeight)
+    local brg = ROT.Map.DividedMaze:new(self.mapWidth, self.mapHeight)
     brg:create(function(x, y, val)
         self.tiles[(y - 1) * self.mapWidth + x] = {
             id = val == 1 and 858 or 0,
