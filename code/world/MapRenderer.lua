@@ -546,36 +546,37 @@ function MapRenderer:render()
     -- walls texture
     persp.setRepeat({26/62 + X_UV_OFF, 17/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
 
-    -- draw most lateral walls
+    -- draw things from back to front, layer by layer
+
+    if tiles[14] and tiles[14].id == 858 then self:drawQuad('wallD-L') end
+    if tiles[16] and tiles[16].id == 858 then self:drawQuad('wallD-R') end
+
+    if tiles[13] and tiles[13].id == 858 then self:drawQuad('faceC-LL') end
+    if tiles[14] and tiles[14].id == 858 then self:drawQuad('faceC-L') end
+    if tiles[15] and tiles[15].id == 858 then self:drawQuad('faceC') end
+    if tiles[16] and tiles[16].id == 858 then self:drawQuad('faceC-R') end
+    if tiles[17] and tiles[17].id == 858 then self:drawQuad('faceC-RR') end
+
     if tiles[7] and tiles[7].id == 858 then self:drawQuad('wallE-L') end
     if tiles[11] and tiles[11].id == 858 then self:drawQuad('wallE-R') end
 
-    -- self:drawQuad('wallF-L')
-    -- self:drawQuad('wallF-R')
+    if tiles[13] and tiles[13].id == 858 then self:drawQuad('wallF-L') end
+    if tiles[17] and tiles[17].id == 858 then self:drawQuad('wallF-R') end
 
-    -- self:drawQuad('faceC')
-    -- self:drawQuad('faceC-L')
-    -- self:drawQuad('faceC-LL')
-    -- self:drawQuad('faceC-R')
-    -- self:drawQuad('faceC-RR')
+    if tiles[8] and tiles[8].id == 858 then self:drawQuad('wallC-L') end
+    if tiles[10] and tiles[10].id == 858 then self:drawQuad('wallC-R') end
 
-    -- self:drawQuad('wallA-L')
-    -- self:drawQuad('wallA-R')
-    -- self:drawQuad('wallB-L')
-    -- self:drawQuad('wallB-R')
+    if tiles[8] and tiles[8].id == 858 then self:drawQuad('faceB-L') end
+    if tiles[9] and tiles[9].id == 858 then self:drawQuad('faceB') end
+    if tiles[10] and tiles[10].id == 858 then self:drawQuad('faceB-R') end
 
-    -- self:drawQuad('wallC-L')
-    -- self:drawQuad('wallC-R')
+    if tiles[4] and tiles[4].id == 858 then self:drawQuad('wallB-L') end
+    if tiles[6] and tiles[6].id == 858 then self:drawQuad('wallB-R') end
 
-    -- self:drawQuad('wallD-L')
-    -- self:drawQuad('wallD-R')
+    if tiles[4] and tiles[4].id == 858 then self:drawQuad('faceA-L') end
+    if tiles[5] and tiles[5].id == 858 then self:drawQuad('faceA') end
+    if tiles[6] and tiles[6].id == 858 then self:drawQuad('faceA-R') end
 
-    -- self:drawQuad('faceB')
-    -- self:drawQuad('faceA')
-    -- self:drawQuad('faceA-L')
-    -- self:drawQuad('faceA-R')
-    -- self:drawQuad('faceB-L')
-    -- self:drawQuad('faceB-R')
-    -- self:drawQuad('faceC-L')
-    -- self:drawQuad('faceC-R')
+    if tiles[2] and tiles[2].id == 858 then self:drawQuad('wallA-L') end
+    if tiles[3] and tiles[3].id == 858 then self:drawQuad('wallA-R') end
 end

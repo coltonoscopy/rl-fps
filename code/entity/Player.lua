@@ -154,75 +154,95 @@ function Player:computeVisibleTiles()
 end
 
 function Player:attemptMoveForward()
-    -- north
     if self.direction == 'N' then
         self.y = self.y - 1
+    elseif self.direction == 'S' then
+        self.y = self.y + 1
+    elseif self.direction == 'W' then
+        self.x = self.x - 1
+    else
+        self.x = self.x + 1
     end
 
-    -- south
-
-    -- west
-
-    -- east
-
     self.visibleTiles = self:computeVisibleTiles()
+
+    -- for the minimap
     Event.dispatch('player-move', self)
 end
 
 function Player:attemptMoveBackward()
-    -- north
     if self.direction == 'N' then
         self.y = self.y + 1
+    elseif self.direction == 'S' then
+        self.y = self.y - 1
+    elseif self.direction == 'W' then
+        self.x = self.x + 1
+    else
+        self.x = self.x - 1
     end
-
-    -- south
-
-    -- west
-
-    -- east
 
     self.visibleTiles = self:computeVisibleTiles()
     Event.dispatch('player-move', self)
 end
 
 function Player:attemptMoveLeft()
-    -- north
+    if self.direction == 'N' then
+        self.x = self.x - 1
+    elseif self.direction == 'S' then
+        self.x = self.x + 1
+    elseif self.direction == 'W' then
+        self.y = self.y + 1
+    else
+        self.y = self.y - 1
+    end
 
-    -- south
-
-    -- west
-
-    -- east
+    self.visibleTiles = self:computeVisibleTiles()
+    Event.dispatch('player-move', self)
 end
 
 function Player:attemptMoveRight()
-    -- north
+    if self.direction == 'N' then
+        self.x = self.x + 1
+    elseif self.direction == 'S' then
+        self.x = self.x - 1
+    elseif self.direction == 'W' then
+        self.y = self.y - 1
+    else
+        self.y = self.y + 1
+    end
 
-    -- south
-
-    -- west
-
-    -- east
+    self.visibleTiles = self:computeVisibleTiles()
+    Event.dispatch('player-move', self)
 end
 
 function Player:rotateLeft()
-    -- north
+    if self.direction == 'N' then
+        self.direction = 'W'
+    elseif self.direction == 'S' then
+        self.direction = 'E'
+    elseif self.direction == 'W' then
+        self.direction = 'S'
+    else
+        self.direction = 'N'
+    end
 
-    -- south
-
-    -- west
-
-    -- east
+    self.visibleTiles = self:computeVisibleTiles()
+    Event.dispatch('player-move', self)
 end
 
 function Player:rotateRight()
-    -- north
+    if self.direction == 'N' then
+        self.direction = 'E'
+    elseif self.direction == 'S' then
+        self.direction = 'W'
+    elseif self.direction == 'W' then
+        self.direction = 'N'
+    else
+        self.direction = 'S'
+    end
 
-    -- south
-
-    -- west
-
-    -- east
+    self.visibleTiles = self:computeVisibleTiles()
+    Event.dispatch('player-move', self)
 end
 
 function Player:update(dt)

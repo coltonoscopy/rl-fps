@@ -29,7 +29,10 @@ function Minimap:computeMinimap()
         end
     end
 
-    self.pixelData:setPixel(self.player.x, self.player.y, 255, 0, 0, 255)
+    if self.player.x >= 0 and self.player.y >= 0 and
+        self.player.x < self.map.mapWidth and self.player.y < self.map.mapHeight then
+        self.pixelData:setPixel(self.player.x, self.player.y, 255, 0, 0, 255)
+    end
 
     self.mapImg = love.graphics.newImage(self.pixelData)
 end
