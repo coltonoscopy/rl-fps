@@ -160,6 +160,8 @@ function Player:globalMoveUp()
     if self.map:getTile(self.x, self.y - 1)
         and self.map:getTile(self.x, self.y - 1).id ~= 858 then
         self.y = self.y - 1
+    else
+        gSounds['bump']:play()
     end
 end
 
@@ -167,6 +169,8 @@ function Player:globalMoveDown()
     if self.map:getTile(self.x, self.y + 1)
         and self.map:getTile(self.x, self.y + 1).id ~= 858 then
         self.y = self.y + 1
+    else
+        gSounds['bump']:play()
     end
 end
 
@@ -174,6 +178,8 @@ function Player:globalMoveLeft()
     if self.map:getTile(self.x - 1, self.y)
         and self.map:getTile(self.x - 1, self.y).id ~= 858 then
         self.x = self.x - 1
+    else
+        gSounds['bump']:play()
     end
 end
 
@@ -181,6 +187,8 @@ function Player:globalMoveRight()
     if self.map:getTile(self.x + 1, self.y)
         and self.map:getTile(self.x + 1, self.y).id ~= 858 then
         self.x = self.x + 1
+    else
+        gSounds['bump']:play()
     end
 end
 

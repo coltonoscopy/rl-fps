@@ -36,3 +36,7 @@ gFrames = {
     ['creatures'] = GenerateQuads(gTextures['tiles'], 32, 32)
 }
 gFrames['tiles'] = gFrames['creatures']
+
+gSounds = {
+    ['bump'] = love.audio.newSource(love.sound.newSoundData('sounds/bump.wav'))
+}
