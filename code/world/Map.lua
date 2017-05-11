@@ -30,8 +30,13 @@ end
 ]]
 function Map:generate()
     -- populate tile map
-    local brg = ROT.Map.DividedMaze:new(self.mapWidth, self.mapHeight)
-    brg:create(function(x, y, val)
+    local dungeon = ROT.Map.DividedMaze:new(self.mapWidth, self.mapHeight)
+    -- local dungeon = ROT.Map.EllerMaze:new(self.mapWidth, self.mapHeight)
+    -- local dungeon = ROT.Map.Brogue(self.mapWidth, self.mapHeight)
+    -- local dungeon = ROT.Map.Digger(self.mapWidth, self.mapHeight)
+    -- local dungeon = ROT.Map.IceyMaze:new(self.mapWidth, self.mapHeight)
+
+    dungeon:create(function(x, y, val)
         self.tiles[(y - 1) * self.mapWidth + x] = {
             id = val == 1 and 858 or 0,
             owned = false

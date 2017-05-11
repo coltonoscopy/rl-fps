@@ -42,5 +42,5 @@ function Minimap:update(dt)
 end
 
 function Minimap:render()
-    love.graphics.draw(self.mapImg, virtualWidth - 100, virtualHeight - 100)
+    love.graphics.draw(self.mapImg, virtualWidth - 100, virtualHeight - 100, 0, 2, 2)
 end
