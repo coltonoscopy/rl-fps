@@ -13,6 +13,7 @@ Timer = require 'code/libs/knife.timer'
 
 persp = require 'code/Perspective'
 
+require 'code/Colors'
 require 'code/StateMachine'
 require 'code/Util'
 

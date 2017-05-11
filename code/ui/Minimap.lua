@@ -45,29 +45,32 @@ function Minimap:computeMinimap()
     for y = top, bottom do
         for x = left, right do
             -- filled tiles
+            local c = gColors['gray']
             if self.map:getTile(x, y) and self.map:getTile(x, y).id == 858 then
                 for y2 = 0, 4 do
                     for x2 = 0, 4 do
                         self.pixelData:setPixel((x - left) * 5 + x2, (y - top) * 5 + y2,
-                            0x69, 0x6a, 0x6a, 255)
+                            c.r, c.g, c.b, 255)
                     end
                 end
             else
             -- empty tiles
+            local c = gColors['brown_gray']
                 for y2 = 0, 4 do
                     for x2 = 0, 4 do
                         self.pixelData:setPixel((x - left) * 5 + x2, (y - top) * 5 + y2,
-                            0x32, 0x3c, 0x39, 255)
+                            c.r, c.g, c.b, 255)
                     end
                 end
             end
 
             -- draw items
+            local c = gColors['lime']
             if self.map:getTile(x, y) and #self.map:getTile(x, y).items > 0 then
                 for y2 = 0, 4 do
                     for x2 = 0, 4 do
                         self.pixelData:setPixel((x - left) * 5 + x2, (y - top) * 5 + y2,
-                            0x6a, 0xbe, 0x30, 255)
+                            c.r, c.g, c.b, 255)
                     end
                 end
             end
