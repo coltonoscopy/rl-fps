@@ -11,6 +11,8 @@ function Minimap:init(map, player)
     self:computeMinimap()
     self.mapImg:setFilter('nearest', 'nearest')
 
+    self.display = true
+
     Event.on('player-move', function()
         self:computeMinimap()
     end)
@@ -42,9 +44,6 @@ function Minimap:computeMinimap()
     -- for each tile, draw 5 pixels to represent it
     for y = top, bottom do
         for x = left, right do
-            print("Top: " .. top .. ", Bottom: " .. bottom)
-            print("Left: " .. left .. ", Right: " .. right)
-
             -- filled tiles
             if self.map:getTile(x, y) and self.map:getTile(x, y).id == 858 then
                 for y2 = 0, 4 do
@@ -163,9 +162,17 @@ function Minimap:computeMinimap()
 end
 
 function Minimap:update(dt)
-
+    if love.keyboard.wasPressed('m') then
+        if self.display then
+            self.display = false
+        else
+            self.display = true
+        end
+    end
 end
 
 function Minimap:render()
-    love.graphics.draw(self.mapImg, virtualWidth - 100, virtualHeight - 100)
+    if self.display then
+        love.graphics.draw(self.mapImg, virtualWidth - 100, virtualHeight - 100)
+    end
 end

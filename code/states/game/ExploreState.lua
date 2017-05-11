@@ -27,6 +27,7 @@ end
 
 function ExploreState:update(dt)
     self.player:update(dt)
+    self.minimap:update(dt)
 end
 
 function ExploreState:render()

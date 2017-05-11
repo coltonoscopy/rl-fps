@@ -551,31 +551,126 @@ function MapRenderer:render()
     if tiles[14] and tiles[14].id == 858 then self:drawQuad('wallD-L') end
     if tiles[16] and tiles[16].id == 858 then self:drawQuad('wallD-R') end
 
+    if tiles[7] and tiles[7].id ~= 858 then
+        if #tiles[7].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[7].items[1].frame],
+                -virtualWidth / 18, virtualHeight - 118)
+        end
+    end
     if tiles[7] and tiles[7].id == 858 then self:drawQuad('wallE-L') end
+
+    if tiles[11] and tiles[11].id ~= 858 then
+        if #tiles[11].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[11].items[1].frame],
+                virtualWidth - virtualWidth / 18, virtualHeight - 118)
+        end
+    end
     if tiles[11] and tiles[11].id == 858 then self:drawQuad('wallE-R') end
 
     if tiles[13] and tiles[13].id == 858 then self:drawQuad('wallF-L') end
     if tiles[17] and tiles[17].id == 858 then self:drawQuad('wallF-R') end
 
+    if tiles[13] and tiles[13].id ~= 858 then
+        if #tiles[13].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[13].items[1].frame],
+                virtualWidth / 8, virtualHeight - 132, 0, 0.7, 0.7)
+        end
+    end
     if tiles[13] and tiles[13].id == 858 then self:drawQuad('faceC-LL') end
+
+    if tiles[14] and tiles[14].id ~= 858 then
+        if #tiles[14].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[14].items[1].frame],
+                virtualWidth / 2 - virtualWidth / 6, virtualHeight - 132, 0, 0.7, 0.7)
+        end
+    end
     if tiles[14] and tiles[14].id == 858 then self:drawQuad('faceC-L') end
+
     if tiles[15] and tiles[15].id == 858 then self:drawQuad('faceC') end
+    if tiles[16] and tiles[16].id ~= 858 then
+        if #tiles[16].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[16].items[1].frame],
+                virtualWidth / 2 + virtualWidth / 7, virtualHeight - 132, 0, 0.7, 0.7)
+        end
+    end
     if tiles[16] and tiles[16].id == 858 then self:drawQuad('faceC-R') end
+
+    if tiles[17] and tiles[17].id ~= 858 then
+        if #tiles[17].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[17].items[1].frame],
+                virtualWidth / 2 + virtualWidth / 3, virtualHeight - 132, 0, 0.7, 0.7)
+        end
+    end
     if tiles[17] and tiles[17].id == 858 then self:drawQuad('faceC-RR') end
+
+    if tiles[15] and tiles[15].id ~= 858 then
+        if #tiles[15].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[15].items[1].frame],
+                virtualWidth / 2 - 12, virtualHeight - 132, 0, 0.7, 0.7)
+        end
+    end
 
     if tiles[8] and tiles[8].id == 858 then self:drawQuad('wallC-L') end
     if tiles[10] and tiles[10].id == 858 then self:drawQuad('wallC-R') end
 
+    if tiles[8] and tiles[8].id ~= 858 then
+        if #tiles[8].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[8].items[1].frame],
+                virtualWidth / 5, virtualHeight - 118)
+        end
+    end
     if tiles[8] and tiles[8].id == 858 then self:drawQuad('faceB-L') end
     if tiles[9] and tiles[9].id == 858 then self:drawQuad('faceB') end
+
+    if tiles[10] and tiles[10].id ~= 858 then
+        if #tiles[10].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[10].items[1].frame],
+                virtualWidth - virtualWidth / 5, virtualHeight - 118)
+        end
+    end
     if tiles[10] and tiles[10].id == 858 then self:drawQuad('faceB-R') end
+
+    if tiles[9] and tiles[9].id ~= 858 then
+        if #tiles[9].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[9].items[1].frame],
+                virtualWidth / 2 - 18, virtualHeight - 118)
+        end
+    end
 
     if tiles[4] and tiles[4].id == 858 then self:drawQuad('wallB-L') end
     if tiles[6] and tiles[6].id == 858 then self:drawQuad('wallB-R') end
 
+    if tiles[4] and tiles[4].id ~= 858 then
+        if #tiles[4].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[4].items[1].frame],
+                -virtualWidth / 16, virtualHeight - 108, 0, 2, 2)
+        end
+    end
     if tiles[4] and tiles[4].id == 858 then self:drawQuad('faceA-L') end
+
     if tiles[5] and tiles[5].id == 858 then self:drawQuad('faceA') end
+
+    if tiles[6] and tiles[6].id ~= 858 then
+        if #tiles[6].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[6].items[1].frame],
+                virtualWidth - virtualWidth / 16, virtualHeight - 108, 0, 2, 2)
+        end
+    end
     if tiles[6] and tiles[6].id == 858 then self:drawQuad('faceA-R') end
+
+    if tiles[5] and tiles[5].id ~= 858 then
+        if #tiles[5].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[5].items[1].frame],
+                virtualWidth / 2 - 36, virtualHeight - 108, 0, 2, 2)
+        end
+    end
+
+    if tiles[1] and tiles[1].id ~= 858 then
+        if #tiles[1].items > 0 then
+            love.graphics.draw(gTextures['tiles'], gFrames['tiles'][tiles[1].items[1].frame],
+                virtualWidth / 2 - 64, virtualHeight - 92, 0, 4, 4)
+        end
+    end
 
     if tiles[2] and tiles[2].id == 858 then self:drawQuad('wallA-L') end
     if tiles[3] and tiles[3].id == 858 then self:drawQuad('wallA-R') end

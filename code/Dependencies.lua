@@ -20,6 +20,8 @@ require 'code/entity/Entity'
 require 'code/entity/Player'
 require 'code/entity/PlayerController'
 
+require 'code/entity/ItemEntity'
+
 require 'code/states/BaseState'
 require 'code/states/game/ExploreState'
 
