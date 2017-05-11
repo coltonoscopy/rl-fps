@@ -544,7 +544,7 @@ function MapRenderer:render()
     self:drawQuad('faceD-RRR')
 
     -- walls texture
-    persp.setRepeat({21/64, 17/48 - Y_UV_OFF}, {1/64, 1/48})
+    persp.setRepeat({29/64, 15/48 - Y_UV_OFF}, {1/64, 1/48})
 
     -- draw things from back to front, layer by layer
 

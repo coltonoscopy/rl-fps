@@ -67,11 +67,11 @@ number intersect(vec2 v1,vec2 d1,vec2 v2,vec2 d2)
 }
 vec4 mask(vec4 base,vec4 over)
 {
-	return vec4(over.rgb*over.a+base.rgb*(1-over.a),over.a+base.a*(1-over.a));
+	return vec4(over.rgb*over.a+base.rgb*(1-over.a),over.a);
 }
 vec4 effect(vec4 colour,Image UNUSED1,vec2 UNUSED2,vec2 inverted)
 {
-	vec2 p=vec2(inverted.x, inverted.y); 
+	vec2 p=vec2(inverted.x, inverted.y);
 
 	vec2 A1=normalize(v2-v1);
 	vec2 A2=normalize(v3-v4);
@@ -165,10 +165,10 @@ function fast(img,v1,v2,v3,v4)
 	gl_send(glsl,"v2",v3)
 	gl_send(glsl,"v3",v4)
 	gl_send(glsl,"v4",v1)
-  
+
   local vertices = {v1[1],v1[2],v2[1],v2[2],v3[1],v3[2],v4[1],v4[2]}
 	q("fill", vertices)
-  
+
 end
 
 function quad(img,v1,v2,v3,v4)
