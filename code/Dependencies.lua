@@ -5,6 +5,7 @@ push = require 'code/libs/push'
 
 Chain = require 'code/libs/knife.chain'
 Class = require 'code/libs/hump.class'
+Event = require 'code/libs/knife.event'
 Grid = require 'code/libs/jumper.grid'
 Pathfinder = require 'code/libs/jumper.pathfinder'
 Timer = require 'code/libs/knife.timer'
@@ -15,9 +16,13 @@ require 'code/StateMachine'
 require 'code/Util'
 
 require 'code/entity/Entity'
+require 'code/entity/Player'
+require 'code/entity/PlayerController'
 
 require 'code/states/BaseState'
 require 'code/states/game/ExploreState'
+
+require 'code/ui/Minimap'
 
 require 'code/world/Map'
 require 'code/world/MapRenderer'

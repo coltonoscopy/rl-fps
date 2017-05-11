@@ -9,12 +9,20 @@ MapRenderer = Class{}
 X_UV_OFF = 0.003
 Y_UV_OFF = 0.000001
 
-function MapRenderer:init(map)
+function MapRenderer:init(map, player)
     self.map = map
+    self.player = player
 
     -- references to virtualWidth and virtualHeight, avoid typing chars
     local vw = virtualWidth
     local vh = virtualHeight
+
+    self.floorX = 23
+
+    -- animated tile test
+    Timer.every(1, function()
+        self.floorX = self.floorX == 23 and 24 or 23
+    end)
 
     -- all the quads that represent our scene
     self.quads = {
@@ -127,70 +135,70 @@ function MapRenderer:init(map)
             {vw + vw / 6, vh / 1.9},
         },
         ['ceilingA'] = {
-            {vw / 7, vh - vh / 8},
-            {vw - vw / 7, vh - vh / 8},
-            {vw + vw / 5, vh + vh / 3},
-            {-vw / 5, vh + vh / 3}
+            {vw / 7, vh / 10},
+            {vw - vw / 7, vh / 10},
+            {vw + vw / 5, -vh / 3},
+            {-vw / 5, -vh / 3}
         },
         ['ceilingA-L'] = {
-            {-vw / 3, vh - vh / 8},
-            {vw / 7, vh - vh / 8},
-            {-vw / 23, vh + vh / 8},
-            {-vw / 3, vh + vh / 8}
+            {-vw / 3, vh / 10},
+            {vw / 6, vh / 10},
+            {-vw / 23, -vh / 10},
+            {-vw / 3, -vh / 10}
         },
         ['ceilingA-R'] = {
-            {vw + vw / 3, vh - vh / 8},
-            {vw - vw / 7, vh - vh / 8},
-            {vw + vw / 23, vh + vh / 8},
-            {vw + vw / 3, vh + vh / 8}
+            {vw + vw / 3, vh / 10},
+            {vw - vw / 6, vh / 10},
+            {vw + vw / 23, -vh / 10},
+            {vw + vw / 3, -vh / 10}
         },
         ['ceilingB'] = {
-            {vw / 3.4, vh - vh / 3},
-            {vw - vw / 3.4, vh - vh / 3},
-            {vw - vw / 7, vh - vh / 8},
-            {vw / 7, vh - vh / 8},
+            {vw / 3.4, vh / 4},
+            {vw - vw / 3.4, vh / 4},
+            {vw - vw / 7, vh / 10},
+            {vw / 7, vh / 10},
         },
         ['ceilingB-L'] = {
-            {-vw / 8, vh - vh / 3},
-            {vw / 3.4, vh - vh / 3},
-            {vw / 7, vh - vh / 8},
-            {-vw / 3, vh - vh / 8},
+            {-vw / 8, vh / 4},
+            {vw / 3.4, vh / 4},
+            {vw / 7, vh / 10},
+            {-vw / 3, vh / 10},
         },
         ['ceilingB-R'] = {
-            {vw + vw / 8, vh - vh / 3},
-            {vw - vw / 3.4, vh - vh / 3},
-            {vw - vw / 7, vh - vh / 8},
-            {vw + vw / 3, vh - vh / 8},
+            {vw + vw / 8, vh / 4},
+            {vw - vw / 3.4, vh / 4},
+            {vw - vw / 7, vh / 10},
+            {vw + vw / 3, vh / 10},
         },
         ['ceilingC'] = {
-            {vw / 2.55, vh / 1.9},
-            {vw - vw / 2.55, vh / 1.9},
-            {vw - vw / 3.4, vh - vh / 3},
-            {vw / 3.4, vh - vh / 3},
+            {vw / 2.55, vh / 2.5},
+            {vw - vw / 2.55, vh / 2.5},
+            {vw - vw / 3.4, vh / 4},
+            {vw / 3.4, vh / 4},
         },
         ['ceilingC-L'] = {
-            {vw / 6, vh / 1.9},
-            {vw / 2.55, vh / 1.9},
-            {vw / 3.4, vh - vh / 3},
-            {-vw / 8, vh - vh / 3},
+            {vw / 6, vh / 2.5},
+            {vw / 2.55, vh / 2.5},
+            {vw / 3.4, vh / 4},
+            {-vw / 8, vh / 4},
         },
         ['ceilingC-LL'] = {
-            {-vw / 10, vh / 1.9},
-            {vw / 6, vh / 1.9},
-            {-vw / 8, vh - vh / 3},
-            {-vw / 4, vh - vh / 3},
+            {-vw / 10, vh / 2.5},
+            {vw / 6, vh / 2.5},
+            {-vw / 8, vh / 4},
+            {-vw / 4, vh / 4},
         },
         ['ceilingC-R'] = {
-            {vw - vw / 6, vh / 1.9},
-            {vw - vw / 2.55, vh / 1.9},
-            {vw - vw / 3.4, vh - vh / 3},
-            {vw + vw / 8, vh - vh / 3},
+            {vw - vw / 6, vh / 2.5},
+            {vw - vw / 2.55, vh / 2.5},
+            {vw - vw / 3.4, vh / 4},
+            {vw + vw / 8, vh / 4},
         },
         ['ceilingC-RR'] = {
-            {vw + vw / 10, vh / 1.9},
-            {vw - vw / 6, vh / 1.9},
-            {vw + vw / 8, vh - vh / 3},
-            {vw + vw / 4, vh - vh / 3},
+            {vw + vw / 10, vh / 2.5},
+            {vw - vw / 6, vh / 2.5},
+            {vw + vw / 8, vh / 4},
+            {vw + vw / 4, vh / 4},
         },
         ['ceilingD'] = {
             {vw / 2.25, vh / 2.2},
@@ -471,30 +479,10 @@ function MapRenderer:getUVsByFrame(texture, frame, tileHeight, tileWidth)
 end
 
 function MapRenderer:render()
-    -- draw floors
-    persp.setRepeat({23/62 + X_UV_OFF / 2, 14/48}, {1/62 - 1/(62*32), 1/48})
+    local tiles = self.player.visibleTiles
 
-    self:drawQuad('floorA')
-    self:drawQuad('floorA-L')
-    self:drawQuad('floorA-R')
-
-    self:drawQuad('floorB')
-    self:drawQuad('floorB-L')
-    self:drawQuad('floorB-R')
-
-    self:drawQuad('floorC')
-    self:drawQuad('floorC-L')
-    self:drawQuad('floorC-LL')
-    self:drawQuad('floorC-R')
-    self:drawQuad('floorC-RR')
-
-    self:drawQuad('floorD')
-    self:drawQuad('floorD-L')
-    self:drawQuad('floorD-LL')
-    self:drawQuad('floorD-LLL')
-    self:drawQuad('floorD-R')
-    self:drawQuad('floorD-RR')
-    self:drawQuad('floorD-RRR')
+    -- always draw ceiling
+    persp.setRepeat({23/62 + X_UV_OFF / 2, 13/48}, {1/62 - 1/(62*32), 1/48})
 
     self:drawQuad('ceilingA')
     self:drawQuad('ceilingA-L')
@@ -518,10 +506,35 @@ function MapRenderer:render()
     self:drawQuad('ceilingD-RR')
     self:drawQuad('ceilingD-RRR')
 
-    -- draw walls
-    persp.setRepeat({26/62 + X_UV_OFF, 17/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
+    -- always draw floors
+    persp.setRepeat({self.floorX/62 + X_UV_OFF / 2, 19/48}, {1/62 - 1/(62*32), 1/48})
 
-    -- draw faces
+    self:drawQuad('floorA')
+    self:drawQuad('floorA-L')
+    self:drawQuad('floorA-R')
+
+    self:drawQuad('floorB')
+    self:drawQuad('floorB-L')
+    self:drawQuad('floorB-R')
+
+    self:drawQuad('floorC')
+    self:drawQuad('floorC-L')
+    self:drawQuad('floorC-LL')
+    self:drawQuad('floorC-R')
+    self:drawQuad('floorC-RR')
+
+    self:drawQuad('floorD')
+    self:drawQuad('floorD-L')
+    self:drawQuad('floorD-LL')
+    self:drawQuad('floorD-LLL')
+    self:drawQuad('floorD-R')
+    self:drawQuad('floorD-RR')
+    self:drawQuad('floorD-RRR')
+
+    -- darkness texture for back walls
+    persp.setRepeat({28/62 + X_UV_OFF, 13/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
+
+    -- always draw faces back row
     self:drawQuad('faceD')
     self:drawQuad('faceD-L')
     self:drawQuad('faceD-LL')
@@ -530,17 +543,21 @@ function MapRenderer:render()
     self:drawQuad('faceD-RR')
     self:drawQuad('faceD-RRR')
 
+    -- walls texture
+    persp.setRepeat({26/62 + X_UV_OFF, 17/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
+
+    -- draw most lateral walls
+    if tiles[7] and tiles[7].id == 858 then self:drawQuad('wallE-L') end
+    if tiles[11] and tiles[11].id == 858 then self:drawQuad('wallE-R') end
+
+    -- self:drawQuad('wallF-L')
+    -- self:drawQuad('wallF-R')
+
     -- self:drawQuad('faceC')
     -- self:drawQuad('faceC-L')
     -- self:drawQuad('faceC-LL')
     -- self:drawQuad('faceC-R')
     -- self:drawQuad('faceC-RR')
-
-    self:drawQuad('wallE-L')
-    self:drawQuad('wallE-R')
-
-    self:drawQuad('wallF-L')
-    self:drawQuad('wallF-R')
 
     -- self:drawQuad('wallA-L')
     -- self:drawQuad('wallA-R')

@@ -33,6 +33,7 @@ end
 
 function love.update(dt)
     gGameSM:update(dt)
+    Timer.update(dt)
 
     love.keyboard.keysPressed = {}
     love.keyboard.keysReleased = {}

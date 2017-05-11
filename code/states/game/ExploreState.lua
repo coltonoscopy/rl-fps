@@ -10,81 +10,19 @@ function ExploreState:init()
         frames = gFrames['tiles'],
         tileHeight = 32,
         tileWidth = 32,
-        mapWidth = 100,
-        mapHeight = 100
+        mapWidth = 20,
+        mapHeight = 20
     }
 
-    self.player = Entity {
+    self.player = Player {
         x = 7,
         y = 4,
-        texture = gTextures['tiles'],
-        frame = 2924,
+        direction = 'N',
+        map = self.map
     }
 
-    self.mapRenderer = MapRenderer(self.map)
-end
-
-function ExploreState:createFloorVertices()
-    return {
-        {
-            -- top-left corner
-            192, 160
-        },
-        {
-            -- top-right corner
-            320, 160,
-        },
-        {
-            -- bottom-right corner
-            448, 288,
-        },
-        {
-            -- bottom-left corner
-            64, 288,
-        }
-    }
-end
-
-function ExploreState:createLeftWallNearVertices()
-    return {
-        {
-            -- top-left corner
-            0, 64,
-        },
-        {
-            -- top-right corner
-            192, 64,
-        },
-        {
-            -- bottom-right corner
-            192, 160,
-        },
-        {
-            -- bottom-left corner
-            0, 360,
-        }
-    }
-end
-
-function ExploreState:createRightWallNearVertices()
-    return {
-        {
-            -- top-right corner
-            virtualWidth, 64,
-        },
-        {
-            -- top-left corner
-            virtualWidth - 192, 64,
-        },
-        {
-            -- bottom-left corner
-            virtualWidth - 192, 160,
-        },
-        {
-            -- bottom-left corner
-            virtualWidth, 360,
-        }
-    }
+    self.mapRenderer = MapRenderer(self.map, self.player)
+    self.minimap = Minimap(self.map, self.player)
 end
 
 function ExploreState:update(dt)
@@ -93,12 +31,11 @@ end
 
 function ExploreState:render()
     self:renderMap()
-    self.player:render()
 end
 
 function ExploreState:renderMap()
-    -- render the ground and the ceiling
     love.graphics.clear()
 
     self.mapRenderer:render()
+    self.minimap:render()
 end
