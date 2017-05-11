@@ -6,7 +6,7 @@
 MapRenderer = Class{}
 
 -- UV offsets to clean up bleeding edges
-X_UV_OFF = 0.003
+X_UV_OFF = -0.0005
 Y_UV_OFF = 0.000001
 
 function MapRenderer:init(map, player)
@@ -17,11 +17,11 @@ function MapRenderer:init(map, player)
     local vw = virtualWidth
     local vh = virtualHeight
 
-    self.floorX = 23
+    self.floorX = 33
 
     -- animated tile test
     Timer.every(1, function()
-        self.floorX = self.floorX == 23 and 24 or 23
+        self.floorX = self.floorX == 33 and 34 or 33
     end)
 
     -- all the quads that represent our scene
@@ -482,7 +482,7 @@ function MapRenderer:render()
     local tiles = self.player.visibleTiles
 
     -- always draw ceiling
-    persp.setRepeat({23/62 + X_UV_OFF / 2, 13/48}, {1/62 - 1/(62*32), 1/48})
+    persp.setRepeat({25/64, 14/48}, {1/64, 1/48})
 
     self:drawQuad('ceilingA')
     self:drawQuad('ceilingA-L')
@@ -507,7 +507,7 @@ function MapRenderer:render()
     self:drawQuad('ceilingD-RRR')
 
     -- always draw floors
-    persp.setRepeat({self.floorX/62 + X_UV_OFF / 2, 19/48}, {1/62 - 1/(62*32), 1/48})
+    persp.setRepeat({self.floorX/64, 18/48}, {1/64, 1/48})
 
     self:drawQuad('floorA')
     self:drawQuad('floorA-L')
@@ -532,7 +532,7 @@ function MapRenderer:render()
     self:drawQuad('floorD-RRR')
 
     -- darkness texture for back walls
-    persp.setRepeat({28/62 + X_UV_OFF, 13/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
+    persp.setRepeat({29/64, 13/48 - Y_UV_OFF}, {1/64, 1/48})
 
     -- always draw faces back row
     self:drawQuad('faceD')
@@ -544,7 +544,7 @@ function MapRenderer:render()
     self:drawQuad('faceD-RRR')
 
     -- walls texture
-    persp.setRepeat({26/62 + X_UV_OFF, 17/48 - Y_UV_OFF}, {1/62 - 1/(62*32), 1/48})
+    persp.setRepeat({21/64, 17/48 - Y_UV_OFF}, {1/64, 1/48})
 
     -- draw things from back to front, layer by layer
 
