@@ -20,9 +20,9 @@ function MapRenderer:init(map, player)
     self.floorX = 33
 
     -- animated tile test
-    Timer.every(1, function()
-        self.floorX = self.floorX == 33 and 34 or 33
-    end)
+    -- Timer.every(1, function()
+    --     self.floorX = self.floorX == 33 and 34 or 33
+    -- end)
 
     -- all the quads that represent our scene
     self.quads = {

@@ -8,6 +8,7 @@ Class = require 'code/libs/hump.class'
 Event = require 'code/libs/knife.event'
 Grid = require 'code/libs/jumper.grid'
 Pathfinder = require 'code/libs/jumper.pathfinder'
+ROT = require 'code/libs/rotLove/rotLove'
 Timer = require 'code/libs/knife.timer'
 
 persp = require 'code/Perspective'

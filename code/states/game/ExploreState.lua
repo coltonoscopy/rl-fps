@@ -10,8 +10,8 @@ function ExploreState:init()
         frames = gFrames['tiles'],
         tileHeight = 32,
         tileWidth = 32,
-        mapWidth = 20,
-        mapHeight = 20
+        mapWidth = 100,
+        mapHeight = 100
     }
 
     self.player = Player {
