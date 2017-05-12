@@ -29,6 +29,7 @@ end
 function ExploreState:update(dt)
     self.player:update(dt)
     self.minimap:update(dt)
+    self.notBox:update(dt)
 end
 
 function ExploreState:render()

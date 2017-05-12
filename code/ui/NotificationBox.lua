@@ -10,7 +10,7 @@ function NotificationBox:init()
     self.y = virtualWidth / 16
     self.width = virtualWidth / 2
     self.height = virtualHeight / 5
-    self.text = 'Press Space to open and close menu!'
+    self.text = 'Press Space to open and close menu!\nPress Enter to dismiss!'
 end
 
 function NotificationBox:setText(text)
@@ -23,6 +23,12 @@ end
 
 function NotificationBox:hide()
     self.visible = false
+end
+
+function NotificationBox:update(dt)
+    if love.keyboard.wasPressed('return') then
+        self.visible = false
+    end
 end
 
 function NotificationBox:render()
