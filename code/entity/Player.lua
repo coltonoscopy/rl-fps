@@ -10,6 +10,7 @@ function Player:init(def)
     self.map = def.map
     self.direction = def.direction
     self.controller = PlayerController(self)
+    self.inventory = Inventory()
     self.visibleTiles = self:computeVisibleTiles()
 end
 
@@ -154,12 +155,25 @@ function Player:computeVisibleTiles()
 end
 
 --[[
+    Adds whatever item is on the current tile to the player's inventory.
+]]
+function Player:pickupItem()
+    if #self.map:getTile(self.x, self.y).items > 0 then
+        gSounds['item']:play()
+        table.insert(self.inventory.items, self.map:getTile(self.x, self.y).items[1])
+        self.map:getTile(self.x, self.y).items = {}
+    end
+end
+
+--[[
     Global to the map, not the player's direction.
 ]]
 function Player:globalMoveUp()
     if self.map:getTile(self.x, self.y - 1)
         and self.map:getTile(self.x, self.y - 1).id ~= 858 then
         self.y = self.y - 1
+        self:pickupItem()
+        Event.dispatch('player-move', self)
     else
         gSounds['bump']:play()
     end
@@ -169,6 +183,8 @@ function Player:globalMoveDown()
     if self.map:getTile(self.x, self.y + 1)
         and self.map:getTile(self.x, self.y + 1).id ~= 858 then
         self.y = self.y + 1
+        self:pickupItem()
+        Event.dispatch('player-move', self)
     else
         gSounds['bump']:play()
     end
@@ -178,6 +194,8 @@ function Player:globalMoveLeft()
     if self.map:getTile(self.x - 1, self.y)
         and self.map:getTile(self.x - 1, self.y).id ~= 858 then
         self.x = self.x - 1
+        self:pickupItem()
+        Event.dispatch('player-move', self)
     else
         gSounds['bump']:play()
     end
@@ -187,6 +205,8 @@ function Player:globalMoveRight()
     if self.map:getTile(self.x + 1, self.y)
         and self.map:getTile(self.x + 1, self.y).id ~= 858 then
         self.x = self.x + 1
+        self:pickupItem()
+        Event.dispatch('player-move', self)
     else
         gSounds['bump']:play()
     end
@@ -207,9 +227,6 @@ function Player:attemptMoveForward()
     end
 
     self.visibleTiles = self:computeVisibleTiles()
-
-    -- for the minimap
-    Event.dispatch('player-move', self)
 end
 
 function Player:attemptMoveBackward()
@@ -224,7 +241,6 @@ function Player:attemptMoveBackward()
     end
 
     self.visibleTiles = self:computeVisibleTiles()
-    Event.dispatch('player-move', self)
 end
 
 function Player:attemptMoveLeft()
@@ -239,7 +255,6 @@ function Player:attemptMoveLeft()
     end
 
     self.visibleTiles = self:computeVisibleTiles()
-    Event.dispatch('player-move', self)
 end
 
 function Player:attemptMoveRight()
@@ -254,7 +269,6 @@ function Player:attemptMoveRight()
     end
 
     self.visibleTiles = self:computeVisibleTiles()
-    Event.dispatch('player-move', self)
 end
 
 function Player:rotateLeft()

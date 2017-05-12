@@ -23,6 +23,8 @@ require 'code/entity/PlayerController'
 
 require 'code/entity/ItemEntity'
 
+require 'code/item/Inventory'
+
 require 'code/states/BaseState'
 require 'code/states/game/ExploreState'
 
@@ -42,5 +44,6 @@ gFrames = {
 gFrames['tiles'] = gFrames['creatures']
 
 gSounds = {
-    ['bump'] = love.audio.newSource(love.sound.newSoundData('sounds/bump.wav'))
+    ['bump'] = love.audio.newSource(love.sound.newSoundData('sounds/bump.wav')),
+    ['item'] = love.audio.newSource(love.sound.newSoundData('sounds/item.wav'))
 }
