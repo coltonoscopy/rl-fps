@@ -23,6 +23,7 @@ function ExploreState:init()
 
     self.mapRenderer = MapRenderer(self.map, self.player)
     self.minimap = Minimap(self.map, self.player)
+    self.notBox = NotificationBox()
 end
 
 function ExploreState:update(dt)
@@ -40,4 +41,5 @@ function ExploreState:renderMap()
 
     self.mapRenderer:render()
     self.minimap:render()
+    self.notBox:render()
 end

@@ -29,6 +29,7 @@ require 'code/states/BaseState'
 require 'code/states/game/ExploreState'
 
 require 'code/ui/Minimap'
+require 'code/ui/NotificationBox'
 
 require 'code/world/Map'
 require 'code/world/MapRenderer'
