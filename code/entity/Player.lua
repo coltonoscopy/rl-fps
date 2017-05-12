@@ -306,5 +306,5 @@ function Player:update(dt)
 end
 
 function Player:render()
-    self.inventory:render()
+    
 end

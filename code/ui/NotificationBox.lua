@@ -10,7 +10,7 @@ function NotificationBox:init()
     self.y = virtualWidth / 16
     self.width = virtualWidth / 2
     self.height = virtualHeight / 5
-    self.text = 'This is a test!'
+    self.text = 'Press Space to open and close menu!'
 end
 
 function NotificationBox:setText(text)

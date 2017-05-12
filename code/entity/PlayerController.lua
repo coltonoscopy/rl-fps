@@ -22,4 +22,8 @@ function PlayerController:update(dt)
     elseif love.keyboard.wasPressed('left') then
         self.player:rotateLeft()
     end
+
+    if love.keyboard.wasPressed('space') then
+        Event.dispatch('player-menu-enter', self.player.inventory)
+    end
 end

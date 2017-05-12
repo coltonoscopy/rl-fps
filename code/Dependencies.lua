@@ -27,6 +27,7 @@ require 'code/item/Inventory'
 
 require 'code/states/BaseState'
 require 'code/states/game/ExploreState'
+require 'code/states/game/MenuState'
 
 require 'code/ui/Minimap'
 require 'code/ui/NotificationBox'

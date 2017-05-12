@@ -12,12 +12,23 @@ virtualWidth = 384
 virtualHeight = 216
 
 -- state machine controlling our various game states
+local exploreState = ExploreState()
+local menuState = MenuState()
+
 gGameSM = StateMachine {
-    ['explore'] = function() return ExploreState() end,
+    ['explore'] = function() return exploreState end,
     -- ['mainmenu'] = function() return MainMenuState() end,
-    -- ['menu'] = function() return MenuState() end
+    ['menu'] = function() return menuState end
 }
 gGameSM:change('explore')
+
+Event.on('player-menu-enter', function(inventory)
+    gGameSM:change('menu', inventory)
+end)
+
+Event.on('player-menu-exit', function()
+    gGameSM:change('explore')
+end)
 
 function love.load()
     love.graphics.setFont(love.graphics.newFont('fonts/font.ttf', 8))
