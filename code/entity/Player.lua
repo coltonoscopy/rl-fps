@@ -306,5 +306,6 @@ function Player:update(dt)
 end
 
 function Player:render()
-    
+    love.graphics.draw(gTextures['tiles'], gFrames['tiles'][1814], virtualWidth - 8,
+        virtualHeight / 2 + 8, 0, -4, 4)
 end

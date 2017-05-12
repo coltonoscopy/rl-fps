@@ -188,6 +188,6 @@ end
 
 function Minimap:render()
     if self.display then
-        love.graphics.draw(self.mapImg, virtualWidth - 100, virtualHeight - 100)
+        love.graphics.draw(self.mapImg, virtualWidth - 100, 4)
     end
 end
