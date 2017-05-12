@@ -35,7 +35,7 @@ function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
     love.window.setTitle('Roguelike RPG')
 
-    push:setupScreen(virtualWidth, virtualHeight, 1920, 1080, {
+    push:setupScreen(virtualWidth, virtualHeight, 1280, 720, {
         fullscreen = false,
         resizable = true
     })

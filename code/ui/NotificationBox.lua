@@ -27,6 +27,11 @@ end
 
 function NotificationBox:render()
     if self.visible then
+        -- white outline
+        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.rectangle('fill', self.x - 1, self.y - 1, self.width + 2, self.height + 2)
+
+        -- actual box
         love.graphics.setColor(0, 0, 0, 255)
         love.graphics.rectangle('fill', self.x, self.y, self.width, self.height)
         love.graphics.setColor(255, 255, 255, 255)
