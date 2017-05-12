@@ -26,8 +26,10 @@ function NotificationBox:hide()
 end
 
 function NotificationBox:update(dt)
-    if love.keyboard.wasPressed('return') then
+    if love.keyboard.wasPressed('return') and self.visible then
         self.visible = false
+        gSounds['menu2']:stop()
+        gSounds['menu2']:play()
     end
 end
 

@@ -47,5 +47,6 @@ gFrames['tiles'] = gFrames['creatures']
 
 gSounds = {
     ['bump'] = love.audio.newSource(love.sound.newSoundData('sounds/bump.wav')),
-    ['item'] = love.audio.newSource(love.sound.newSoundData('sounds/item.wav'))
+    ['item'] = love.audio.newSource(love.sound.newSoundData('sounds/item.wav')),
+    ['menu2'] = love.audio.newSource(love.sound.newSoundData('sounds/menu2.wav'))
 }
