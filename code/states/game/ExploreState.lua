@@ -32,6 +32,7 @@ end
 
 function ExploreState:render()
     self:renderMap()
+    self.player:render()
 end
 
 function ExploreState:renderMap()

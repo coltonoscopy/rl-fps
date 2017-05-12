@@ -304,3 +304,7 @@ end
 function Player:update(dt)
     self.controller:update(dt)
 end
+
+function Player:render()
+    self.inventory:render()
+end
