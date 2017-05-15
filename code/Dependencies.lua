@@ -19,7 +19,6 @@ require 'code/Util'
 
 require 'code/entity/Entity'
 require 'code/entity/Player'
-require 'code/entity/PlayerController'
 
 require 'code/entity/ItemEntity'
 
@@ -28,6 +27,9 @@ require 'code/item/Inventory'
 require 'code/states/BaseState'
 require 'code/states/game/ExploreState'
 require 'code/states/game/MenuState'
+
+require 'code/states/player/IdleState'
+require 'code/states/player/UsingWeaponState'
 
 require 'code/ui/Minimap'
 require 'code/ui/NotificationBox'

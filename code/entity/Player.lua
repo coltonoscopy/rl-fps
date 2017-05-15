@@ -9,7 +9,18 @@ function Player:init(def)
     self.y = def.y
     self.map = def.map
     self.direction = def.direction
-    self.controller = PlayerController(self)
+
+    self.idleState = IdleState(self)
+    self.usingWeaponState = UsingWeaponState(self)
+
+    -- self.controller = PlayerController(self)
+    self.controller = StateMachine {
+        ['idle'] = function() return self.idleState end,
+        ['using-weapon'] = function() return self.usingWeaponState end
+    }
+
+    self.controller:change('idle')
+
     self.inventory = Inventory()
     self.visibleTiles = self:computeVisibleTiles()
 end
@@ -159,6 +170,7 @@ end
 ]]
 function Player:pickupItem()
     if #self.map:getTile(self.x, self.y).items > 0 then
+        gSounds['item']:stop()
         gSounds['item']:play()
         table.insert(self.inventory.items, self.map:getTile(self.x, self.y).items[1])
         self.map:getTile(self.x, self.y).items = {}
@@ -306,6 +318,5 @@ function Player:update(dt)
 end
 
 function Player:render()
-    love.graphics.draw(gTextures['tiles'], gFrames['tiles'][1814], virtualWidth - 8,
-        virtualHeight / 2 + 8, 0, -4, 4)
+    self.controller:render()
 end

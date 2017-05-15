@@ -63,3 +63,10 @@ function print_r ( t )
     end
     print()
 end
+
+--[[
+    General-purpose degrees-to-radians function.
+]]
+function degreesToRadians(degrees)
+    return degrees * 0.0174533
+end

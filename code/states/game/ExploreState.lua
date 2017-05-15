@@ -17,7 +17,7 @@ function ExploreState:init()
     self.player = Player {
         x = 2,
         y = 2,
-        direction = 'N',
+        direction = 'S',
         map = self.map
     }
 

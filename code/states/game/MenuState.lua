@@ -15,7 +15,7 @@ function MenuState:enter(data)
 end
 
 function MenuState:update(dt)
-    if love.keyboard.wasPressed('space') then
+    if love.keyboard.wasPressed('tab') then
         Event.dispatch('player-menu-exit')
     end
 end
@@ -28,7 +28,7 @@ function MenuState:render()
     local counter = 1
     local y = 8
     for k, v in pairs(self.inventory.items) do
-        if counter > 16 then
+        if counter > 23 then
             counter = 1
             y = y + 16
         end
